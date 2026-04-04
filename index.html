@@ -1,213 +1,622 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rohit Patel | Senior Full-Stack Developer</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #05070a;
-            --card-bg: #0f172a;
-            --accent: #0ea5e9;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --border: #1e293b;
-        }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Rohit Patel | Senior Full-Stack Developer</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg:      #05090f;
+  --navy:    #0b1628;
+  --card:    #0f1e35;
+  --border:  #1a3050;
+  --teal:    #00c2cb;
+  --teal2:   #06b6d4;
+  --gold:    #f4a832;
+  --white:   #f0f8ff;
+  --muted:   #7a9cbf;
+  --light:   #c4d8f0;
+  --display: 'Syne', sans-serif;
+  --body:    'DM Sans', sans-serif;
+  --mono:    'Space Mono', monospace;
+}
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body { background:var(--bg); color:var(--white); font-family:var(--body); overflow-x:hidden; cursor:none; }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
-        body { background: var(--bg); color: var(--text-main); line-height: 1.7; overflow-x: hidden; scroll-behavior: smooth; }
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+/* ── CURSOR ── */
+#cur  { width:10px;height:10px;background:var(--teal);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .15s; }
+#ring { width:34px;height:34px;border:1.5px solid var(--teal);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.45;transition:transform .3s; }
 
-        /* --- Header --- */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 40px;
-            background: radial-gradient(circle at 90% 10%, #0c4a6e 0%, #05070a 50%);
-            padding: 80px 0;
-        }
-        .hero-text { flex: 1.2; }
-        .hero-text h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 20px; }
-        .hero-text h1 span { color: var(--accent); }
-        
-        .profile-area { flex: 0.8; display: flex; justify-content: center; position: relative; }
-        .profile-img {
-            width: 490px; height: 480px; object-fit: cover; border-radius: 30px;
-            border: 2px solid var(--accent); box-shadow: 0 0 40px rgba(14, 165, 233, 0.2);
-        }
+/* ── PARTICLES ── */
+#pts { position:fixed;inset:0;z-index:0;pointer-events:none; }
 
-        /* --- Clickable Contact Grid --- */
-        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 25px; }
-        .contact-item { 
-            background: rgba(255,255,255,0.03); padding: 12px; border-radius: 10px; 
-            border: 1px solid var(--border); font-size: 0.9rem; color: var(--text-muted);
-            display: flex; align-items: center; 
-        }
-        .contact-item:hover { border-color: var(--accent); background: rgba(14, 165, 233, 0.05); color: var(--text-main); }
-        .contact-item i { color: var(--accent); margin-right: 12px; width: 20px; text-align: center; }
+/* ── NAV ── */
+nav {
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1rem 2.5rem;
+  background:rgba(5,9,15,.88);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo { font-family:var(--mono);font-size:1rem;color:var(--teal); }
+.nav-logo b { color:var(--white); }
+.nav-links { display:flex;gap:1.8rem;list-style:none; }
+.nav-links a { font-family:var(--mono);font-size:.72rem;color:var(--muted);text-decoration:none;letter-spacing:.12em;text-transform:uppercase;transition:color .2s; }
+.nav-links a:hover,.nav-links a.active { color:var(--teal); }
 
-        /* --- Skills Section --- */
-        .skills-section { padding: 60px 0; border-top: 1px solid var(--border); }
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
-        .skill-card { background: var(--card-bg); padding: 25px; border-radius: 15px; border: 1px solid var(--border); }
-        .skill-card h4 { color: var(--accent); margin-bottom: 10px; font-size: 1rem; }
-        .skill-card p { font-size: 0.85rem; color: var(--text-muted); }
+/* ── HERO ── */
+#hero {
+  position:relative;z-index:1;
+  min-height:100vh;
+  display:flex;align-items:center;
+  padding:6rem 2.5rem 4rem;
+  background:radial-gradient(ellipse at 75% 10%, rgba(0,194,203,.08) 0%, transparent 55%);
+}
+.hero-inner {
+  max-width:1100px;margin:0 auto;width:100%;
+  display:grid;grid-template-columns:1fr 420px;gap:4rem;align-items:center;
+}
+.hero-tag { font-family:var(--mono);font-size:.72rem;color:var(--teal);letter-spacing:.22em;text-transform:uppercase;margin-bottom:.9rem;opacity:0;animation:fadeUp .6s .2s forwards; }
+.hero-name { font-family:var(--display);font-size:clamp(3rem,6.5vw,5.2rem);font-weight:800;line-height:1;letter-spacing:-.02em;margin-bottom:.5rem;opacity:0;animation:fadeUp .6s .35s forwards; }
+.hero-name .a { color:var(--teal); }
+.hero-role { font-family:var(--display);font-size:clamp(.95rem,2vw,1.25rem);font-weight:600;color:var(--light);margin-bottom:1.2rem;opacity:0;animation:fadeUp .6s .5s forwards; }
+.typewriter-wrap { font-family:var(--mono);font-size:.85rem;color:var(--muted);margin-bottom:1.8rem;min-height:1.4em;opacity:0;animation:fadeUp .6s .65s forwards; }
+#tw::after { content:'|';color:var(--teal);animation:blink .7s infinite; }
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 
-        /* --- Project Styling --- */
-        section { padding: 80px 0; opacity: 0; transform: translateY(40px); transition: 0.8s ease-out; }
-        section.visible { opacity: 1; transform: translateY(0); }
+/* stats */
+.hero-stats { display:flex;gap:1.8rem;margin-bottom:2rem;opacity:0;animation:fadeUp .6s .8s forwards; }
+.stat-item { text-align:center; }
+.stat-num { font-family:var(--display);font-size:2rem;font-weight:800;color:var(--teal);display:block; }
+.stat-label { font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em; }
 
-        .project-detailed {
-            background: var(--card-bg); border: 1px solid var(--border);
-            border-radius: 24px; padding: 40px; margin-bottom: 40px; position: relative;
-        }
-        .project-detailed::before { content: ''; position: absolute; top: 0; left: 0; width: 6px; height: 100%; background: var(--accent); border-radius: 24px 0 0 24px; }
-        
-        .project-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 15px; }
-        .project-head h3 { font-size: 1.8rem; color: #fff; }
-        
-        .tech-pills { display: flex; gap: 8px; flex-wrap: wrap; }
-        .pill { background: #1e293b; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; color: var(--accent); border: 1px solid #334155; }
+/* buttons */
+.hero-btns { display:flex;gap:.85rem;flex-wrap:wrap;opacity:0;animation:fadeUp .6s .95s forwards; }
+.btn { font-family:var(--mono);font-size:.75rem;padding:.7rem 1.4rem;border-radius:6px;text-decoration:none;letter-spacing:.07em;display:inline-flex;align-items:center;gap:.4rem;transition:all .25s; }
+.btn-p { background:var(--teal);color:var(--bg);font-weight:700; }
+.btn-p:hover { background:var(--teal2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,194,203,.3); }
+.btn-o { border:1.5px solid var(--border);color:var(--light); }
+.btn-o:hover { border-color:var(--teal);color:var(--teal);transform:translateY(-2px); }
 
-        .grid-info { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-        .info-box h4 { color: var(--accent); margin-bottom: 10px; text-transform: uppercase; font-size: 0.8rem; font-weight: 800; }
-        .info-box p, .info-box li { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 8px; }
+/* ── PHOTO CARD ── */
+.photo-wrap { position:relative;opacity:0;animation:fadeIn .9s .4s forwards; }
+.photo-glow {
+  position:absolute;inset:-3px;border-radius:24px;
+  background:conic-gradient(from 0deg,var(--teal),var(--teal2),transparent,var(--teal));
+  animation:spin 8s linear infinite;
+  z-index:0;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.photo-inner {
+  position:relative;z-index:1;
+  border-radius:22px;overflow:hidden;
+  background:var(--card);
+  margin:3px;
+}
+.photo-inner img {
+  width:100%;height:420px;object-fit:cover;object-position:top;
+  display:block;filter:brightness(.96) contrast(1.04);
+  transition:transform .5s;
+}
+.photo-wrap:hover .photo-inner img { transform:scale(1.03); }
 
-        @media (max-width: 992px) {
-            .hero { flex-direction: column-reverse; height: auto; text-align: center; }
-            .grid-info { grid-template-columns: 1fr; }
-            .contact-grid { grid-template-columns: 1fr; }
-            .profile-img { width: 100%; max-width: 400px; height: auto; }
-        }
-    </style>
+/* badges below photo */
+.photo-badges { display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1rem;justify-content:center; }
+.badge { font-family:var(--mono);font-size:.65rem;padding:.28rem .7rem;border-radius:100px;border:1px solid var(--border);color:var(--muted);background:var(--card);transition:all .2s; }
+.badge:hover { border-color:var(--teal);color:var(--teal); }
+.badge.g { border-color:rgba(244,168,50,.4);color:var(--gold); }
+
+/* ── SECTIONS ── */
+.sec { position:relative;z-index:1;padding:5rem 2.5rem;max-width:1100px;margin:0 auto; }
+.sec-hdr { display:flex;align-items:center;gap:1rem;margin-bottom:2.8rem; }
+.sec-tag { font-family:var(--mono);font-size:.68rem;color:var(--teal);letter-spacing:.22em;text-transform:uppercase;white-space:nowrap; }
+.sec-title { font-family:var(--display);font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;letter-spacing:-.02em; }
+.sec-line { flex:1;height:1px;background:linear-gradient(to right,var(--border),transparent); }
+
+/* ── SKILLS ── */
+.skills-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(235px,1fr));gap:1rem; }
+.skill-card {
+  background:var(--card);border:1px solid var(--border);border-radius:12px;
+  padding:1.2rem 1.3rem;position:relative;overflow:hidden;
+  transition:all .3s;opacity:0;transform:translateY(16px);
+}
+.skill-card.vis { opacity:1;transform:none; }
+.skill-card::before { content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--teal);border-radius:3px 0 0 3px; }
+.skill-card:hover { transform:translateY(-4px);border-color:var(--teal);box-shadow:0 12px 32px rgba(0,194,203,.1); }
+.skill-cat { font-family:var(--mono);font-size:.65rem;color:var(--teal);letter-spacing:.14em;text-transform:uppercase;margin-bottom:.55rem; }
+.skill-items { font-size:.88rem;color:var(--light);line-height:1.55;margin-bottom:.85rem; }
+.bar-wrap { height:4px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden; }
+.bar { height:100%;background:linear-gradient(to right,var(--teal),var(--teal2));border-radius:2px;width:0;transition:width 1.2s cubic-bezier(.4,0,.2,1); }
+.bar-pct { font-family:var(--mono);font-size:.62rem;color:var(--muted);float:right;margin-top:.28rem; }
+
+/* ── TIMELINE ── */
+.timeline { position:relative; }
+.timeline::before { content:'';position:absolute;left:19px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--teal),transparent); }
+.t-item { display:flex;gap:1.8rem;margin-bottom:2.2rem;opacity:0;transform:translateX(-18px);transition:all .6s; }
+.t-item.vis { opacity:1;transform:none; }
+.t-dot { flex-shrink:0;width:40px;height:40px;border-radius:50%;background:var(--card);border:2px solid var(--teal);display:flex;align-items:center;justify-content:center;font-size:1rem;z-index:1; }
+.t-body { flex:1;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.4rem;transition:border-color .3s; }
+.t-body:hover { border-color:var(--teal); }
+.t-head { display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:.5rem;margin-bottom:.4rem; }
+.t-role { font-family:var(--display);font-size:1.1rem;font-weight:700; }
+.t-badge { font-family:var(--mono);font-size:.65rem;padding:.22rem .7rem;border-radius:100px; }
+.t-badge.teal { background:rgba(0,194,203,.1);color:var(--teal);border:1px solid rgba(0,194,203,.25); }
+.t-badge.gold { background:rgba(244,168,50,.1);color:var(--gold);border:1px solid rgba(244,168,50,.25); }
+.t-company { font-family:var(--mono);font-size:.75rem;color:var(--teal);margin-bottom:.9rem; }
+.t-ach { list-style:none; }
+.t-ach li { font-size:.88rem;color:var(--light);padding:.35rem 0;border-bottom:1px solid rgba(255,255,255,.04);display:flex;gap:.55rem;align-items:flex-start; }
+.t-ach li::before { content:'▸';color:var(--teal);flex-shrink:0;margin-top:.05rem; }
+
+/* ── PROJECTS ── */
+.proj-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.2rem; }
+.proj-card {
+  background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.4rem;
+  position:relative;overflow:hidden;transition:all .3s;
+  opacity:0;transform:translateY(18px);
+}
+.proj-card.vis { opacity:1;transform:none; }
+.proj-card:hover { border-color:var(--teal);box-shadow:0 16px 40px rgba(0,194,203,.1);transform:translateY(-4px); }
+.proj-card::after { content:'';position:absolute;inset:0;background:radial-gradient(circle at 85% 15%,rgba(0,194,203,.05),transparent 55%);pointer-events:none; }
+.proj-impact { font-family:var(--mono);font-size:.65rem;padding:.22rem .65rem;border-radius:100px;background:rgba(244,168,50,.1);color:var(--gold);border:1px solid rgba(244,168,50,.22);display:inline-block;margin-bottom:.8rem; }
+.proj-title { font-family:var(--display);font-size:1rem;font-weight:700;margin-bottom:.35rem; }
+.proj-tech { font-family:var(--mono);font-size:.68rem;color:var(--teal2);margin-bottom:.75rem;font-style:italic; }
+.proj-challenge-label,.proj-result-label { font-family:var(--mono);font-size:.62rem;text-transform:uppercase;letter-spacing:.12em;margin:.6rem 0 .25rem; }
+.proj-challenge-label { color:var(--muted); }
+.proj-result-label { color:var(--teal); }
+.proj-desc { font-size:.85rem;color:#8aaccc;line-height:1.6; }
+.proj-ul { list-style:none;font-size:.84rem;color:#8aaccc;line-height:1.6; }
+.proj-ul li::before { content:'→ ';color:var(--teal); }
+
+/* ── GITHUB STATS ── */
+.gh-grid { display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;margin-bottom:1.1rem; }
+.gh-card { background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:border-color .3s; }
+.gh-card:hover { border-color:var(--teal); }
+.gh-card img { width:100%;display:block; }
+.gh-streak { background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:border-color .3s; }
+.gh-streak:hover { border-color:var(--gold); }
+.gh-streak img { width:100%;display:block; }
+/* fallback message if image fails */
+.gh-fallback { display:none;padding:1.5rem;text-align:center;font-family:var(--mono);font-size:.78rem;color:var(--muted); }
+.gh-fallback a { color:var(--teal);text-decoration:none; }
+
+/* ── CONTACT ── */
+.contact-wrap { display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start; }
+.contact-cta { font-family:var(--display);font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;line-height:1.1;margin-bottom:.9rem; }
+.contact-cta .a { color:var(--teal); }
+.contact-sub { font-size:.93rem;color:var(--muted);line-height:1.7;margin-bottom:1.8rem; }
+.contact-links { display:flex;flex-direction:column;gap:.7rem; }
+.c-link { display:flex;align-items:center;gap:1rem;padding:.9rem 1.2rem;background:var(--card);border:1px solid var(--border);border-radius:10px;text-decoration:none;color:var(--light);font-size:.88rem;transition:all .25s; }
+.c-link:hover { border-color:var(--teal);color:var(--teal);transform:translateX(5px); }
+.c-link i { font-size:1rem;color:var(--teal);width:20px;text-align:center; }
+.c-label { font-family:var(--mono);font-size:.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;display:block; }
+
+/* ── QUOTE ── */
+.quote-bar { position:relative;z-index:1;padding:2.5rem;text-align:center;background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border); }
+.quote-text { font-family:var(--display);font-size:clamp(1rem,2vw,1.35rem);font-weight:600;max-width:660px;margin:0 auto .4rem;line-height:1.5; }
+.quote-attr { font-family:var(--mono);font-size:.68rem;color:var(--teal);letter-spacing:.12em; }
+
+/* ── FOOTER ── */
+footer { position:relative;z-index:1;padding:1.8rem 2.5rem;text-align:center;border-top:1px solid var(--border);font-family:var(--mono);font-size:.7rem;color:var(--muted); }
+footer span { color:var(--teal); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:none} }
+@keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--teal);border-radius:10px}
+
+/* ── RESPONSIVE ── */
+@media(max-width:860px){
+  .hero-inner{grid-template-columns:1fr}
+  .photo-wrap{order:-1;max-width:300px;margin:0 auto}
+  .photo-inner img{height:300px}
+  .gh-grid{grid-template-columns:1fr}
+  .contact-wrap{grid-template-columns:1fr}
+  nav{padding:1rem 1.5rem}
+  .nav-links{gap:1.1rem}
+  .sec{padding:3.5rem 1.5rem}
+}
+@media(max-width:560px){
+  .hero-stats{gap:1rem}
+  .stat-num{font-size:1.5rem}
+  .nav-links a{font-size:.62rem;letter-spacing:.06em}
+}
+</style>
 </head>
 <body>
 
-    <div class="container">
-        <header class="hero">
-            <div class="hero-text">
-                <h1>ROHIT<br><span>PATEL</span></h1>
-                <p>Full-Stack Developer (3+ Years) | Laravel, Node.js & Shopify Expert. Specialized in Scaling High-Performance APIs and Microservices.</p>
-                
-                <div class="contact-grid">
-                    <a href="tel:+919009093084" class="contact-item"><i class="fas fa-phone"></i> +91 9009093084</a>
-                    <a href="mailto:rps.241298@gmail.com" class="contact-item"><i class="fas fa-envelope"></i> rps.241298@gmail.com</a>
-                    <a href="https://github.com/rohitpatel-codes" target="_blank" class="contact-item"><i class="fab fa-github"></i> github.com/rohitpatel-codes</a>
-                    <a href="https://www.linkedin.com/in/rohit-patel-4a6a16259/" target="_blank" class="contact-item"><i class="fab fa-linkedin"></i> linkedin.com/rohit-patel</a>
-                </div>
-            </div>
-            <div class="profile-area">
-                <img class="profile-img" src="https://lh3.googleusercontent.com/d/1HSnmXY4t2y51Gz7ODXVzoodb9WkDoKX0" alt="Rohit Patel">
-            </div>
-        </header>
+<canvas id="pts"></canvas>
+<div id="cur"></div>
+<div id="ring"></div>
 
-        <div class="skills-section">
-            <h2 style="margin-bottom: 30px;">Core Tech Stack</h2>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <h4>Backend & DB</h4>
-                    <p>PHP, Laravel, Node.js, MySQL, MongoDB, PostgreSQL</p>
-                </div>
-                <div class="skill-card">
-                    <h4>DevOps & Docker</h4>
-                    <p>Docker, Jenkins, Terraform, Nginx, Fly.io, Vercel</p>
-                </div>
-                <div class="skill-card">
-                    <h4>Cloud (AWS)</h4>
-                    <p>EC2, S3, Kubernetes (K8s), DigitalOcean</p>
-                </div>
-                <div class="skill-card">
-                    <h4>E-commerce</h4>
-                    <p>Shopify API, GraphQL, Remix, Stripe, Razorpay</p>
-                </div>
-            </div>
-        </div>
+<!-- NAV -->
+<nav>
+  <div class="nav-logo"><b>rohit</b>.patel<span style="color:var(--teal)">_</span></div>
+  <ul class="nav-links">
+    <li><a href="#hero">home</a></li>
+    <li><a href="#skills">skills</a></li>
+    <li><a href="#experience">exp</a></li>
+    <li><a href="#projects">projects</a></li>
+    <li><a href="#github">github</a></li>
+    <li><a href="#contact">contact</a></li>
+  </ul>
+</nav>
 
-        <section id="projects" class="visible">
-            <h2 style="font-size: 2.5rem; margin-bottom: 50px;">Major Projects & Case Studies</h2>
-
-            <div class="project-detailed">
-                <div class="project-head">
-                    <h3>High-Speed Product Sync (10M+)</h3>
-                    <div class="tech-pills"><span class="pill">Laravel</span><span class="pill">PostgreSQL</span><span class="pill">Kimpex API</span></div>
-                </div>
-                <div class="grid-info">
-                    <div class="info-box">
-                        <h4>Challenge</h4>
-                        <p>Managing 1Cr+ product records from third-party APIs. Traditional syncing caused massive database locks and latency.</p>
-                    </div>
-                    <div class="info-box">
-                        <h4>Solution & Result</h4>
-                        <ul>
-                            <li>Implemented Microservices architecture for data ingestion.</li>
-                            <li>Optimized search retrieval to sub-500ms.</li>
-                            <li>Reduced sync time by 60% using Redis & Chunking.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-detailed">
-                <div class="project-head">
-                    <h3>Multi-Store Inventory (Shopify)</h3>
-                    <div class="tech-pills"><span class="pill">Node.js</span><span class="pill">Docker</span><span class="pill">Webhooks</span></div>
-                </div>
-                <div class="grid-info">
-                    <div class="info-box">
-                        <h4>Challenge</h4>
-                        <p>Syncing 30,000+ products across 6 independent stores. Real-time stock accuracy was critical for order fulfillment.</p>
-                    </div>
-                    <div class="info-box">
-                        <h4>Solution & Result</h4>
-                        <ul>
-                            <li>Containerized the sync engine with <strong>Docker</strong> for scalability.</li>
-                            <li>Automated Excel imports and Stripe billing.</li>
-                            <li>Improved stock accuracy to 100% across all storefronts.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-detailed">
-                <div class="project-head">
-                    <h3>Public Shopify App (Remix)</h3>
-                    <div class="tech-pills"><span class="pill">Remix</span><span class="pill">Node.js</span><span class="pill">MongoDB</span><span class="pill">K8s</span></div>
-                </div>
-                <div class="grid-info">
-                    <div class="info-box">
-                        <h4>Challenge</h4>
-                        <p>Handling 1–2 Million requests per month on a public store-facing application.</p>
-                    </div>
-                    <div class="info-box">
-                        <h4>Solution & Result</h4>
-                        <ul>
-                            <li>Deployed on AWS with <strong>Kubernetes</strong> and <strong>Terraform</strong>.</li>
-                            <li>Used Remix for lightning-fast Server-Side Rendering.</li>
-                            <li>Maintained 99.9% uptime during peak Shopify flash sales.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <footer style="text-align: center; padding: 60px 0; border-top: 1px solid var(--border);">
-            <p style="color: var(--accent); font-weight: 800; font-size: 1.2rem;">Expert in AWS | Docker | Laravel | Shopify</p>
-            <p style="margin-top: 10px; color: var(--text-muted);">© 2026 Rohit Patel. Based in Dewas, India.</p>
-        </footer>
+<!-- HERO -->
+<section id="hero" style="max-width:100%;padding:0;">
+<div id="hero" style="position:relative;z-index:1;min-height:100vh;display:flex;align-items:center;padding:6rem 2.5rem 4rem;background:radial-gradient(ellipse at 70% 10%,rgba(0,194,203,.07) 0%,transparent 55%);">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag">// Senior Full-Stack Developer</div>
+      <h1 class="hero-name">Rohit<br><span class="a">Patel</span></h1>
+      <div class="hero-role">Laravel · Node.js · Shopify App Architect · DevOps Enthusiast</div>
+      <div class="typewriter-wrap"><span id="tw"></span></div>
+      <div class="hero-stats">
+        <div class="stat-item"><span class="stat-num" data-target="3" data-suffix="+">0</span><span class="stat-label">Years Exp</span></div>
+        <div class="stat-item"><span class="stat-num" data-target="5" data-suffix="+">0</span><span class="stat-label">Shopify Apps</span></div>
+        <div class="stat-item"><span class="stat-num" data-target="2" data-suffix="M+">0</span><span class="stat-label">Req/Month</span></div>
+        <div class="stat-item"><span class="stat-num" data-target="10" data-suffix="M+">0</span><span class="stat-label">Records</span></div>
+      </div>
+      <div class="hero-btns">
+        <a href="#contact" class="btn btn-p">📬 Hire Me</a>
+        <a href="#projects" class="btn btn-o">🚀 Projects</a>
+        <a href="https://github.com/rohitpatel-codes" target="_blank" class="btn btn-o"><i class="fab fa-github"></i> GitHub</a>
+      </div>
     </div>
 
-    <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if(entry.isIntersecting) entry.target.classList.add('visible');
-            });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('section').forEach(s => observer.observe(s));
-    </script>
+    <!-- REAL PHOTO -->
+    <div class="photo-wrap">
+      <div class="photo-glow"></div>
+      <div class="photo-inner">
+        <img
+          src="https://lh3.googleusercontent.com/d/1HSnmXY4t2y51Gz7ODXVzoodb9WkDoKX0"
+          alt="Rohit Patel"
+          onerror="this.style.display='none';document.getElementById('avatar-fallback').style.display='flex'"
+        />
+        <!-- fallback if photo doesn't load -->
+        <div id="avatar-fallback" style="display:none;width:100%;height:420px;background:var(--card);align-items:center;justify-content:center;flex-direction:column;gap:.5rem;">
+          <div style="font-family:var(--display);font-size:5rem;font-weight:800;color:var(--teal);">RP</div>
+          <div style="font-family:var(--mono);font-size:.7rem;color:var(--muted);">FULL STACK DEV</div>
+        </div>
+      </div>
+      <div class="photo-badges">
+        <span class="badge g">🏆 Shopify Expert</span>
+        <span class="badge">⚡ Laravel</span>
+        <span class="badge">☁️ AWS</span>
+        <span class="badge">🐳 Docker</span>
+        <span class="badge">🔗 GraphQL</span>
+        <span class="badge g">🚀 10M+ Scale</span>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- SKILLS -->
+<div class="sec" id="skills">
+  <div class="sec-hdr">
+    <div class="sec-tag">02.</div>
+    <h2 class="sec-title">Technical Toolbox</h2>
+    <div class="sec-line"></div>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-card" data-pct="92"><div class="skill-cat">Backend</div><div class="skill-items">PHP · Laravel · Node.js</div><div class="bar-wrap"><div class="bar"></div></div><div class="bar-pct">92%</div></div>
+    <div class="skill-card" data-pct="94"><div class="skill-cat">API & E-Commerce</div><div class="skill-items">REST · GraphQL · Shopify API</div><div class="bar-wrap"><div class="bar"></div></div><div class="bar-pct">94%</div></div>
+    <div class="skill-card" data-pct="85"><div class="skill-cat">Frontend</div><div class="skill-items">React.js · Remix · Tailwind · JavaScript</div><div class="bar-wrap"><div class="bar"></div></div><div class="bar-pct">85%</div></div>
+    <div class="skill-card" data-pct="88"><div class="skill-cat">Database</div><div class="skill-items">MySQL · PostgreSQL · MongoDB</div><div class="bar-wrap"><div class="bar"></div></div><div class="bar-pct">88%</div></div>
+    <div class="skill-card" data-pct="80"><div class="skill-cat">Cloud & DevOps</div><div class="skill-items">AWS EC2/S3 · DigitalOcean · Fly.io · Vercel · K8s</div><div class="bar-wrap"><div class="bar"></div></div><div class="bar-pct">80%</div></div>
+    <div class="skill-card" data-pct="82"><div class="skill-cat">Tools</div><div class="skill-items">Docker · Git · Jenkins · Terraform · Nginx</div><div class="bar-wrap"><div class="bar"></div></div><div class="bar-pct">82%</div></div>
+    <div class="skill-card" data-pct="87"><div class="skill-cat">Payments</div><div class="skill-items">Razorpay · Stripe · PayPal</div><div class="bar-wrap"><div class="bar"></div></div><div class="bar-pct">87%</div></div>
+    <div class="skill-card" data-pct="78"><div class="skill-cat">Architecture</div><div class="skill-items">Microservices · Webhooks · AI Tools (Claude, Codex)</div><div class="bar-wrap"><div class="bar"></div></div><div class="bar-pct">78%</div></div>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<div class="sec" id="experience">
+  <div class="sec-hdr">
+    <div class="sec-tag">03.</div>
+    <h2 class="sec-title">Work Experience</h2>
+    <div class="sec-line"></div>
+  </div>
+  <div class="timeline">
+    <div class="t-item">
+      <div class="t-dot">💼</div>
+      <div class="t-body">
+        <div class="t-head">
+          <div class="t-role">Full Stack Developer</div>
+          <span class="t-badge gold">Primary · 3 Years</span>
+        </div>
+        <div class="t-company">ITGeeks · Jan 2022 – Present</div>
+        <ul class="t-ach">
+          <li>Built Shopify multi-store inventory system syncing 30,000+ products weekly across 6 stores — improved stock accuracy to 100%</li>
+          <li>Engineered high-speed product sync via Kimpex API managing 10 Million+ records with sub-500ms search response using Redis & chunking</li>
+          <li>Developed Remix-based public Shopify App on AWS EKS — 1–2M requests/month with 99.9% uptime during flash sales</li>
+          <li>Reduced image load time by 30% in Template Customization System via AWS S3 optimization (10K+ monthly users)</li>
+          <li>Integrated Razorpay, Stripe & PayPal with secure PCI-compliant checkout flows across multiple projects</li>
+          <li>Built automated CRM with rule-based email triggers; improved customer engagement by 40%</li>
+        </ul>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-dot">🖥️</div>
+      <div class="t-body">
+        <div class="t-head">
+          <div class="t-role">Software Developer</div>
+          <span class="t-badge teal">7 Months</span>
+        </div>
+        <div class="t-company">Expound Soft Tech Solution Pvt. Ltd.</div>
+        <ul class="t-ach">
+          <li>Developed backend modules and CRUD systems using Core PHP & Laravel</li>
+          <li>Built RESTful APIs and integrated third-party services for client projects</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<div class="sec" id="projects">
+  <div class="sec-hdr">
+    <div class="sec-tag">04.</div>
+    <h2 class="sec-title">Major Projects & Case Studies</h2>
+    <div class="sec-line"></div>
+  </div>
+  <div class="proj-grid">
+
+    <div class="proj-card">
+      <div class="proj-impact">10M+ Records</div>
+      <div class="proj-title">High-Speed Product Sync</div>
+      <div class="proj-tech">Laravel · PostgreSQL · Kimpex API · Redis</div>
+      <div class="proj-challenge-label">Challenge</div>
+      <div class="proj-desc">Managing 1Cr+ product records from third-party APIs — traditional syncing caused massive DB locks and latency.</div>
+      <div class="proj-result-label">Result</div>
+      <ul class="proj-ul"><li>Microservices architecture for data ingestion</li><li>Sub-500ms search retrieval</li><li>60% faster sync via Redis & chunking</li></ul>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-impact">30K+ Products</div>
+      <div class="proj-title">Multi-Store Inventory (Shopify)</div>
+      <div class="proj-tech">Node.js · Docker · Webhooks · Stripe</div>
+      <div class="proj-challenge-label">Challenge</div>
+      <div class="proj-desc">Syncing 30,000+ products across 6 independent Shopify stores with real-time stock accuracy.</div>
+      <div class="proj-result-label">Result</div>
+      <ul class="proj-ul"><li>Containerized sync engine with Docker</li><li>Automated Excel imports & Stripe billing</li><li>100% stock accuracy across all storefronts</li></ul>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-impact">2M Req/Month</div>
+      <div class="proj-title">Public Remix Shopify App</div>
+      <div class="proj-tech">Remix · Node.js · MongoDB · AWS K8s · Terraform</div>
+      <div class="proj-challenge-label">Challenge</div>
+      <div class="proj-desc">Handling 1–2 Million requests/month on a public store-facing application with zero downtime tolerance.</div>
+      <div class="proj-result-label">Result</div>
+      <ul class="proj-ul"><li>AWS EKS + Kubernetes + Terraform deployment</li><li>Lightning-fast SSR with Remix</li><li>99.9% uptime during Shopify flash sales</li></ul>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-impact">Multi-Store</div>
+      <div class="proj-title">Wholesale (B2B) Sync System</div>
+      <div class="proj-tech">Laravel · Shopify API · Webhooks</div>
+      <div class="proj-challenge-label">Challenge</div>
+      <div class="proj-desc">Automating product & order sync between B2B and B2C storefronts in real-time.</div>
+      <div class="proj-result-label">Result</div>
+      <ul class="proj-ul"><li>Robust Webhook listener for multi-store updates</li><li>Automated order routing & inventory reservation</li></ul>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-impact">-30% Load Time</div>
+      <div class="proj-title">Template Customization System</div>
+      <div class="proj-tech">Laravel · PostgreSQL · AWS S3</div>
+      <div class="proj-challenge-label">Challenge</div>
+      <div class="proj-desc">Image personalization platform for 10K+ monthly users with slow load times impacting conversion.</div>
+      <div class="proj-result-label">Result</div>
+      <ul class="proj-ul"><li>30% load time reduction via S3 optimization</li><li>Scaled to 10K+ monthly customizations</li></ul>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-impact">+40% Engagement</div>
+      <div class="proj-title">CRM & Email Automation</div>
+      <div class="proj-tech">React.js · Node.js · MongoDB</div>
+      <div class="proj-challenge-label">Challenge</div>
+      <div class="proj-desc">Custom CRM to manage client payments, applications, and automate post-purchase follow-ups.</div>
+      <div class="proj-result-label">Result</div>
+      <ul class="proj-ul"><li>Rule-based email automation via Shopify API</li><li>40% improvement in customer engagement</li></ul>
+    </div>
+
+  </div>
+</div>
+
+<!-- GITHUB STATS -->
+<div class="sec" id="github">
+  <div class="sec-hdr">
+    <div class="sec-tag">05.</div>
+    <h2 class="sec-title">GitHub Activity</h2>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="gh-grid">
+    <div class="gh-card">
+      <img
+        src="https://github-readme-stats.vercel.app/api?username=rohitpatel-codes&show_icons=true&theme=transparent&hide_border=true&include_all_commits=true&count_private=true&title_color=00c2cb&icon_color=f4a832&text_color=c4d8f0&bg_color=0f1e35"
+        alt="GitHub Stats"
+        loading="lazy"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='block'"
+      />
+      <div class="gh-fallback">
+        📊 GitHub stats unavailable — <a href="https://github.com/rohitpatel-codes" target="_blank">view on GitHub →</a>
+      </div>
+    </div>
+    <div class="gh-card">
+      <img
+        src="https://github-readme-stats.vercel.app/api/top-langs/?username=rohitpatel-codes&layout=compact&theme=transparent&hide_border=true&title_color=00c2cb&text_color=c4d8f0&bg_color=0f1e35&langs_count=8"
+        alt="Top Languages"
+        loading="lazy"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='block'"
+      />
+      <div class="gh-fallback">
+        💻 Language stats unavailable — <a href="https://github.com/rohitpatel-codes" target="_blank">view on GitHub →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="gh-streak">
+    <img
+      src="https://streak-stats.demolab.com/?user=rohitpatel-codes&theme=transparent&hide_border=true&ring=00c2cb&fire=f4a832&currStreakLabel=00c2cb&background=0f1e35&stroke=1a3050&sideLabels=c4d8f0&dates=7a9cbf"
+      alt="GitHub Streak"
+      loading="lazy"
+      style="width:100%;display:block;"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='block'"
+    />
+    <div class="gh-fallback" style="display:none;">
+      🔥 Streak stats unavailable — <a href="https://github.com/rohitpatel-codes" target="_blank">view on GitHub →</a>
+    </div>
+  </div>
+
+  <!-- GitHub profile link button -->
+  <div style="text-align:center;margin-top:1.5rem;">
+    <a href="https://github.com/rohitpatel-codes" target="_blank" class="btn btn-o" style="font-family:var(--mono);font-size:.75rem;padding:.7rem 1.8rem;border-radius:6px;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;border:1.5px solid var(--border);color:var(--light);transition:all .25s;">
+      <i class="fab fa-github"></i> View Full GitHub Profile
+    </a>
+  </div>
+</div>
+
+<!-- QUOTE -->
+<div class="quote-bar">
+  <div class="quote-text">"The best way to predict the future is to code it."</div>
+  <div class="quote-attr">— Rohit Patel · Full Stack Developer · Dewas, India</div>
+</div>
+
+<!-- CONTACT -->
+<div class="sec" id="contact">
+  <div class="sec-hdr">
+    <div class="sec-tag">06.</div>
+    <h2 class="sec-title">Get In Touch</h2>
+    <div class="sec-line"></div>
+  </div>
+  <div class="contact-wrap">
+    <div>
+      <div class="contact-cta">Let's Build <span class="a">Something</span><br>Great Together</div>
+      <div class="contact-sub">I'm open to full-time roles, freelance Shopify projects, and cloud architecture consulting. I reply within 24 hours.</div>
+      <div class="hero-btns" style="opacity:1;animation:none;">
+        <a href="mailto:rps.241298@gmail.com" class="btn btn-p">📬 Send Email</a>
+        <a href="https://www.linkedin.com/in/rohit-patel-4a6a16259/" target="_blank" class="btn btn-o"><i class="fab fa-linkedin"></i> LinkedIn</a>
+      </div>
+    </div>
+    <div class="contact-links">
+      <a href="mailto:rps.241298@gmail.com" class="c-link">
+        <i class="fas fa-envelope"></i>
+        <div><span class="c-label">Email</span>rps.241298@gmail.com</div>
+      </a>
+      <a href="tel:+919009093084" class="c-link">
+        <i class="fas fa-phone"></i>
+        <div><span class="c-label">Phone</span>+91 9009093084</div>
+      </a>
+      <a href="https://www.linkedin.com/in/rohit-patel-4a6a16259/" target="_blank" class="c-link">
+        <i class="fab fa-linkedin"></i>
+        <div><span class="c-label">LinkedIn</span>linkedin.com/in/rohit-patel-4a6a16259</div>
+      </a>
+      <a href="https://github.com/rohitpatel-codes" target="_blank" class="c-link">
+        <i class="fab fa-github"></i>
+        <div><span class="c-label">GitHub</span>github.com/rohitpatel-codes</div>
+      </a>
+      <a href="https://profile.rohitpatel.shop" target="_blank" class="c-link">
+        <i class="fas fa-globe"></i>
+        <div><span class="c-label">Portfolio</span>profile.rohitpatel.shop</div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  Built with ❤️ by <span>Rohit Patel</span> · Dewas, Madhya Pradesh, India · <span>© 2026</span>
+</footer>
+
+<script>
+// ── CURSOR ──
+const cur=document.getElementById('cur'),ring=document.getElementById('ring');
+document.addEventListener('mousemove',e=>{
+  cur.style.left=e.clientX+'px'; cur.style.top=e.clientY+'px';
+  setTimeout(()=>{ ring.style.left=e.clientX+'px'; ring.style.top=e.clientY+'px'; },80);
+});
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{ cur.style.transform='translate(-50%,-50%) scale(2)'; ring.style.opacity='.15'; });
+  el.addEventListener('mouseleave',()=>{ cur.style.transform='translate(-50%,-50%) scale(1)'; ring.style.opacity='.45'; });
+});
+
+// ── PARTICLES ──
+const canvas=document.getElementById('pts'),ctx=canvas.getContext('2d');
+let W,H,pts=[];
+function resize(){ W=canvas.width=innerWidth; H=canvas.height=innerHeight; }
+resize(); window.addEventListener('resize',resize);
+for(let i=0;i<55;i++) pts.push({x:Math.random()*9999,y:Math.random()*9999,r:Math.random()*1.4+.3,vx:(Math.random()-.5)*.22,vy:(Math.random()-.5)*.22,a:Math.random()*.35+.08});
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  pts.forEach(p=>{
+    p.x+=p.vx; p.y+=p.vy;
+    if(p.x<0)p.x=W; if(p.x>W)p.x=0;
+    if(p.y<0)p.y=H; if(p.y>H)p.y=0;
+    ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(0,194,203,${p.a})`; ctx.fill();
+  });
+  requestAnimationFrame(draw);
+}
+draw();
+
+// ── TYPEWRITER ──
+const phrases=['Building scalable Shopify ecosystems...','Engineering high-performance APIs...','Deploying on AWS & Kubernetes...','Optimizing for 10M+ product records...','Crafting full-stack web solutions...'];
+let pi=0,ci=0,del=false;
+const tw=document.getElementById('tw');
+function type(){
+  const p=phrases[pi];
+  if(!del){ tw.textContent=p.slice(0,++ci); if(ci===p.length){del=true;setTimeout(type,1800);return;} }
+  else{ tw.textContent=p.slice(0,--ci); if(ci===0){del=false;pi=(pi+1)%phrases.length;} }
+  setTimeout(type,del?32:60);
+}
+type();
+
+// ── COUNTER ──
+const counterObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting)return;
+    const el=e.target,target=+el.dataset.target,suffix=el.dataset.suffix||'+';
+    let cur=0; const step=target/40;
+    const t=setInterval(()=>{ cur=Math.min(cur+step,target); el.textContent=Math.floor(cur)+suffix; if(cur>=target)clearInterval(t); },35);
+    counterObs.unobserve(el);
+  });
+},{threshold:.5});
+document.querySelectorAll('.stat-num[data-target]').forEach(c=>counterObs.observe(c));
+
+// ── SKILL BARS ──
+const skillObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting)return;
+    e.target.querySelector('.bar').style.width=e.target.dataset.pct+'%';
+    e.target.classList.add('vis');
+    skillObs.unobserve(e.target);
+  });
+},{threshold:.25});
+document.querySelectorAll('.skill-card').forEach(c=>skillObs.observe(c));
+
+// ── SCROLL REVEAL ──
+const revObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting)e.target.classList.add('vis'); });
+},{threshold:.12});
+document.querySelectorAll('.t-item,.proj-card').forEach(el=>revObs.observe(el));
+
+// ── ACTIVE NAV ──
+const navAs=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  document.querySelectorAll('[id]').forEach(s=>{ if(scrollY>=s.offsetTop-220)cur=s.id; });
+  navAs.forEach(a=>{ a.classList.toggle('active',a.getAttribute('href')==='#'+cur); });
+});
+</script>
 </body>
 </html>
