@@ -2,60 +2,243 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Rohit Patel | Backend Developer</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rohit Patel | Senior Full-Stack Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #05070a;
+            --card-bg: #0f172a;
+            --accent: #0ea5e9;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: #1e293b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background: var(--bg); color: var(--text-main); line-height: 1.7; overflow-x: hidden; scroll-behavior: smooth; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+        /* --- Header --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            background: radial-gradient(circle at 90% 10%, #0c4a6e 0%, #05070a 50%);
+            padding: 80px 0;
+        }
+        .hero-text { flex: 1.2; }
+        .hero-text h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 20px; }
+        .hero-text h1 span { color: var(--accent); }
+        
+        .profile-area { flex: 0.8; display: flex; justify-content: center; position: relative; }
+        .profile-img {
+            width: 490px; height: 480px; object-fit: cover; border-radius: 30px;
+            border: 2px solid var(--accent); box-shadow: 0 0 40px rgba(14, 165, 233, 0.2);
+        }
+
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 25px; }
+        .contact-item { background: rgba(255,255,255,0.03); padding: 10px; border-radius: 10px; border: 1px solid var(--border); font-size: 0.9rem; color: var(--text-muted); }
+        .contact-item i { color: var(--accent); margin-right: 8px; }
+
+        /* --- Skills Section --- */
+        .skills-section { padding: 60px 0; border-top: 1px solid var(--border); }
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        .skill-card { background: var(--card-bg); padding: 25px; border-radius: 15px; border: 1px solid var(--border); }
+        .skill-card h4 { color: var(--accent); margin-bottom: 10px; font-size: 1rem; }
+        .skill-card p { font-size: 0.85rem; color: var(--text-muted); }
+
+        /* --- Project Styling --- */
+        section { padding: 80px 0; opacity: 0; transform: translateY(40px); transition: 0.8s ease-out; }
+        section.visible { opacity: 1; transform: translateY(0); }
+
+        .project-detailed {
+            background: var(--card-bg); border: 1px solid var(--border);
+            border-radius: 24px; padding: 40px; margin-bottom: 40px; position: relative;
+        }
+        .project-detailed::before { content: ''; position: absolute; top: 0; left: 0; width: 6px; height: 100%; background: var(--accent); border-radius: 24px 0 0 24px; }
+        
+        .project-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 15px; }
+        .project-head h3 { font-size: 1.8rem; color: #fff; }
+        
+        .tech-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+        .pill { background: #1e293b; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; color: var(--accent); border: 1px solid #334155; }
+
+        .grid-info { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .info-box h4 { color: var(--accent); margin-bottom: 10px; text-transform: uppercase; font-size: 0.8rem; font-weight: 800; }
+        .info-box p, .info-box li { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 8px; }
+
+        @media (max-width: 992px) {
+            .hero { flex-direction: column-reverse; height: auto; text-align: center; }
+            .grid-info { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
 
-<div class="profile-card">
-    <div class="header">
-        <h1>Rohit Patel</h1>
-        <p>Senior Backend Developer</p>
-    </div>
+    <div class="container">
+        <header class="hero">
+            <div class="hero-text">
+                <h1>ROHIT<br><span>PATEL</span></h1>
+                <p>Full-Stack Developer (3+ Years) | Laravel, Node.js & Shopify Expert. Specialized in Scaling High-Performance APIs and Microservices.</p>
+                <div class="contact-grid">
+                    <div class="contact-item"><i class="fas fa-phone"></i> +91 9009093084</div>
+                    <div class="contact-item"><i class="fas fa-envelope"></i> rps.241298@gmail.com</div>
+                    <div class="contact-item"><i class="fas fa-globe"></i> profile.rohitpatel.shop</div>
+                    <div class="contact-item"><i class="fab fa-linkedin"></i> rohit-patel</div>
+                </div>
+            </div>
+            <div class="profile-area">
+                <img class="profile-img" src="https://lh3.googleusercontent.com/d/1HSnmXY4t2y51Gz7ODXVzoodb9WkDoKX0" alt="Rohit Patel">
+            </div>
+        </header>
 
-    <div class="content">
-        <h2>About Me</h2>
-        <p>
-            I am a Backend Developer with <strong>4+ years of experience</strong> in building
-            scalable web applications and APIs. I specialize in PHP, Laravel, Node.js,
-            and modern DevOps workflows.
-        </p>
-
-        <h2>Technical Skills</h2>
-        <ul class="skills">
-            <li>PHP</li>
-            <li>Laravel</li>
-            <li>Node.js</li>
-            <li>Express.js</li>
-            <li>REST APIs</li>
-            <li>MySQL</li>
-            <li>Git</li>
-            <li>GitHub</li>
-            <li>Server Deployment</li>
-            <li>Fly.io</li>
-            <li>Resend</li>
-            <li>DevOps</li>
-            <li>CI/CD Pipeline</li>
-            <li>Linux Server</li>
-        </ul>
-
-        <h2>Experience</h2>
-        <div class="experience">
-            <h3>Backend Developer</h3>
-            <span>4+ Years Experience</span>
-            <p>
-                Worked on enterprise and SaaS applications, API development,
-                server deployment, CI/CD automation, and performance optimization.
-            </p>
+        <div class="skills-section">
+            <h2 style="margin-bottom: 30px;">Core Tech Stack</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h4>Backend & DB</h4>
+                    <p>PHP, Laravel, Node.js, MySQL, MongoDB, PostgreSQL</p>
+                </div>
+                <div class="skill-card">
+                    <h4>DevOps & Docker</h4>
+                    <p>Docker, Jenkins, Terraform, Nginx, Fly.io, Vercel</p>
+                </div>
+                <div class="skill-card">
+                    <h4>Cloud (AWS)</h4>
+                    <p>EC2, S3, Kubernetes (K8s), DigitalOcean</p>
+                </div>
+                <div class="skill-card">
+                    <h4>E-commerce</h4>
+                    <p>Shopify API, GraphQL, Remix, Stripe, Razorpay</p>
+                </div>
+            </div>
         </div>
 
-        <h2>Contact</h2>
-        <p>
-            📧 Email: rohitpatel@gmail.com <br>
-            🌐 GitHub: github.com/rohitpatel
-        </p>
-    </div>
-</div>
+        <section id="projects">
+            <h2 style="font-size: 2.5rem; margin-bottom: 50px;">Major Projects & Case Studies</h2>
 
+            <div class="project-detailed">
+                <div class="project-head">
+                    <h3>High-Speed Product Sync (10M+)</h3>
+                    <div class="tech-pills"><span class="pill">Laravel</span><span class="pill">PostgreSQL</span><span class="pill">Kimpex API</span></div>
+                </div>
+                <div class="grid-info">
+                    <div class="info-box">
+                        <h4>Challenge</h4>
+                        <p>Managing 1Cr+ product records from third-party APIs. Traditional syncing caused massive database locks and latency.</p>
+                    </div>
+                    <div class="info-box">
+                        <h4>Solution & Result</h4>
+                        <ul>
+                            <li>Implemented Microservices architecture for data ingestion.</li>
+                            <li>Optimized search retrieval to sub-500ms.</li>
+                            <li>Reduced sync time by 60% using Redis & Chunking.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-detailed">
+                <div class="project-head">
+                    <h3>Multi-Store Inventory (Shopify)</h3>
+                    <div class="tech-pills"><span class="pill">Node.js</span><span class="pill">Docker</span><span class="pill">Webhooks</span></div>
+                </div>
+                <div class="grid-info">
+                    <div class="info-box">
+                        <h4>Challenge</h4>
+                        <p>Syncing 30,000+ products across 6 independent stores. Real-time stock accuracy was critical for order fulfillment.</p>
+                    </div>
+                    <div class="info-box">
+                        <h4>Solution & Result</h4>
+                        <ul>
+                            <li>Containerized the sync engine with <strong>Docker</strong> for scalability.</li>
+                            <li>Automated Excel imports and Stripe billing.</li>
+                            <li>Improved stock accuracy to 100% across all storefronts.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-detailed">
+                <div class="project-head">
+                    <h3>Public Shopify App (Remix)</h3>
+                    <div class="tech-pills"><span class="pill">Remix</span><span class="pill">Node.js</span><span class="pill">MongoDB</span><span class="pill">K8s</span></div>
+                </div>
+                <div class="grid-info">
+                    <div class="info-box">
+                        <h4>Challenge</h4>
+                        <p>Handling 1–2 Million requests per month on a public store-facing application.</p>
+                    </div>
+                    <div class="info-box">
+                        <h4>Solution & Result</h4>
+                        <ul>
+                            <li>Deployed on AWS with <strong>Kubernetes</strong> and <strong>Terraform</strong>.</li>
+                            <li>Used Remix for lightning-fast Server-Side Rendering.</li>
+                            <li>Maintained 99.9% uptime during peak Shopify flash sales.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-detailed">
+                <div class="project-head">
+                    <h3>Wholesale (B2B) Sync System</h3>
+                    <div class="tech-pills"><span class="pill">Laravel</span><span class="pill">Shopify API</span><span class="pill">Webhooks</span></div>
+                </div>
+                <div class="grid-info">
+                    <div class="info-box">
+                        <h4>Challenge</h4>
+                        <p>Automating product and order sync between B2B and B2C storefronts in real-time.</p>
+                    </div>
+                    <div class="info-box">
+                        <h4>Solution & Result</h4>
+                        <ul>
+                            <li>Built a robust Webhook listener to trigger multi-store updates.</li>
+                            <li>Automated order routing and inventory reservation.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-detailed">
+                <div class="project-head">
+                    <h3>CRM & Email Automation</h3>
+                    <div class="tech-pills"><span class="pill">React.js</span><span class="pill">Node.js</span><span class="pill">MongoDB</span></div>
+                </div>
+                <div class="grid-info">
+                    <div class="info-box">
+                        <h4>Details</h4>
+                        <p>Built a custom CRM to manage client payments and application data. Developed an automated email system triggered by Shopify order conditions.</p>
+                    </div>
+                    <div class="info-box">
+                        <h4>Impact</h4>
+                        <ul>
+                            <li>Improved customer engagement by 40%.</li>
+                            <li>Automated redundant post-purchase follow-ups.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer style="text-align: center; padding: 60px 0; border-top: 1px solid var(--border);">
+            <p style="color: var(--accent); font-weight: 800; font-size: 1.2rem;">Expert in AWS | Docker | Laravel | Shopify</p>
+            <p style="margin-top: 10px; color: var(--text-muted);">© 2026 Rohit Patel. Based in Dewas, India.</p>
+        </footer>
+    </div>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('section').forEach(s => observer.observe(s));
+    </script>
 </body>
 </html>
