@@ -5,228 +5,223 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Rohit Patel | Senior Full-Stack Developer</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
 <style>
-:root {
-  --bg:      #05090f;
-  --navy:    #0b1628;
-  --card:    #0f1e35;
-  --border:  #1a3050;
-  --teal:    #00c2cb;
-  --teal2:   #06b6d4;
-  --gold:    #f4a832;
-  --white:   #f0f8ff;
-  --muted:   #7a9cbf;
-  --light:   #c4d8f0;
-  --display: 'Syne', sans-serif;
-  --body:    'DM Sans', sans-serif;
-  --mono:    'Space Mono', monospace;
+:root{
+  --bg:#060a12;
+  --surface:#0c1524;
+  --card:#101e34;
+  --card2:#132240;
+  --border:#1c3358;
+  --border2:#254878;
+  --cyan:#22d3ee;
+  --cyan2:#06b6d4;
+  --violet:#818cf8;
+  --amber:#fbbf24;
+  --rose:#fb7185;
+  --white:#f1f5f9;
+  --muted:#64748b;
+  --light:#94a3b8;
+  --disp:'Bricolage Grotesque',sans-serif;
+  --body:'Outfit',sans-serif;
+  --mono:'JetBrains Mono',monospace;
 }
-*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
-html { scroll-behavior:smooth; }
-body { background:var(--bg); color:var(--white); font-family:var(--body); overflow-x:hidden; cursor:none; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:var(--body);overflow-x:hidden;cursor:none}
 
-/* ── CURSOR ── */
-#cur  { width:10px;height:10px;background:var(--teal);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .15s; }
-#ring { width:34px;height:34px;border:1.5px solid var(--teal);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.45;transition:transform .3s; }
+/* CURSOR */
+#cur{width:8px;height:8px;background:var(--cyan);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .12s,width .2s,height .2s}
+#ring{width:32px;height:32px;border:1px solid var(--cyan);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.35;transition:transform .28s}
+body:hover #cur{opacity:1}
 
-/* ── PARTICLES ── */
-#pts { position:fixed;inset:0;z-index:0;pointer-events:none; }
+/* CANVAS */
+#pts{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.6}
 
 /* ── NAV ── */
-nav {
-  position:fixed;top:0;left:0;right:0;z-index:200;
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
   display:flex;align-items:center;justify-content:space-between;
-  padding:1rem 2.5rem;
-  background:rgba(5,9,15,.88);
-  backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--border);
+  padding:.9rem 3rem;
+  background:rgba(6,10,18,.92);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(34,211,238,.08);
 }
-.nav-logo { font-family:var(--mono);font-size:1rem;color:var(--teal); }
-.nav-logo b { color:var(--white); }
-.nav-links { display:flex;gap:1.8rem;list-style:none; }
-.nav-links a { font-family:var(--mono);font-size:.72rem;color:var(--muted);text-decoration:none;letter-spacing:.12em;text-transform:uppercase;transition:color .2s; }
-.nav-links a:hover,.nav-links a.active { color:var(--teal); }
+.nav-logo{font-family:var(--mono);font-size:.95rem;color:var(--cyan);letter-spacing:-.02em}
+.nav-logo span{color:var(--white)}
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
+.nav-links a{font-family:var(--mono);font-size:.7rem;color:var(--muted);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;transition:color .2s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:1px;background:var(--cyan);transform:scaleX(0);transition:transform .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--cyan)}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
+.nav-cta{font-family:var(--mono);font-size:.7rem;padding:.45rem 1.1rem;background:var(--cyan);color:var(--bg);border-radius:4px;text-decoration:none;font-weight:700;letter-spacing:.05em;transition:all .2s}
+.nav-cta:hover{background:var(--cyan2);transform:translateY(-1px)}
 
 /* ── HERO ── */
-#hero {
+.hero{
   position:relative;z-index:1;
   min-height:100vh;
-  display:flex;align-items:center;
-  padding:6rem 2.5rem 4rem;
-  background:radial-gradient(ellipse at 75% 10%, rgba(0,194,203,.08) 0%, transparent 55%);
+  display:grid;grid-template-columns:1fr 400px;gap:5rem;align-items:center;
+  max-width:1140px;margin:0 auto;padding:7rem 2rem 4rem;
 }
-.hero-inner {
-  max-width:1100px;margin:0 auto;width:100%;
-  display:grid;grid-template-columns:1fr 420px;gap:4rem;align-items:center;
-}
-.hero-tag { font-family:var(--mono);font-size:.72rem;color:var(--teal);letter-spacing:.22em;text-transform:uppercase;margin-bottom:.9rem;opacity:0;animation:fadeUp .6s .2s forwards; }
-.hero-name { font-family:var(--display);font-size:clamp(3rem,6.5vw,5.2rem);font-weight:800;line-height:1;letter-spacing:-.02em;margin-bottom:.5rem;opacity:0;animation:fadeUp .6s .35s forwards; }
-.hero-name .a { color:var(--teal); }
-.hero-role { font-family:var(--display);font-size:clamp(.95rem,2vw,1.25rem);font-weight:600;color:var(--light);margin-bottom:1.2rem;opacity:0;animation:fadeUp .6s .5s forwards; }
-.typewriter-wrap { font-family:var(--mono);font-size:.85rem;color:var(--muted);margin-bottom:1.8rem;min-height:1.4em;opacity:0;animation:fadeUp .6s .65s forwards; }
-#tw::after { content:'|';color:var(--teal);animation:blink .7s infinite; }
+.hero-eyebrow{font-family:var(--mono);font-size:.72rem;color:var(--cyan);letter-spacing:.25em;text-transform:uppercase;margin-bottom:1.2rem;opacity:0;animation:up .5s .15s forwards;display:flex;align-items:center;gap:.7rem}
+.hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--cyan)}
+.hero-name{font-family:var(--disp);font-size:clamp(3.2rem,7vw,5.8rem);font-weight:800;line-height:.95;letter-spacing:-.04em;margin-bottom:.8rem;opacity:0;animation:up .5s .28s forwards}
+.hero-name .hi{color:var(--cyan)}
+.hero-name .line2{display:block;color:var(--white)}
+.hero-sub{font-size:1.05rem;color:var(--light);line-height:1.65;margin-bottom:2rem;max-width:520px;opacity:0;animation:up .5s .42s forwards}
+.tw-wrap{font-family:var(--mono);font-size:.82rem;color:var(--muted);margin-bottom:2.2rem;min-height:1.3em;opacity:0;animation:up .5s .55s forwards}
+#tw::after{content:'▌';color:var(--cyan);animation:blink .65s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 
-/* stats */
-.hero-stats { display:flex;gap:1.8rem;margin-bottom:2rem;opacity:0;animation:fadeUp .6s .8s forwards; }
-.stat-item { text-align:center; }
-.stat-num { font-family:var(--display);font-size:2rem;font-weight:800;color:var(--teal);display:block; }
-.stat-label { font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em; }
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2.5rem;opacity:0;animation:up .5s .68s forwards}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:.9rem .7rem;text-align:center}
+.kpi-n{font-family:var(--disp);font-size:1.7rem;font-weight:800;color:var(--cyan);display:block;line-height:1}
+.kpi-l{font-size:.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:.25rem}
 
-/* buttons */
-.hero-btns { display:flex;gap:.85rem;flex-wrap:wrap;opacity:0;animation:fadeUp .6s .95s forwards; }
-.btn { font-family:var(--mono);font-size:.75rem;padding:.7rem 1.4rem;border-radius:6px;text-decoration:none;letter-spacing:.07em;display:inline-flex;align-items:center;gap:.4rem;transition:all .25s; }
-.btn-p { background:var(--teal);color:var(--bg);font-weight:700; }
-.btn-p:hover { background:var(--teal2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,194,203,.3); }
-.btn-o { border:1.5px solid var(--border);color:var(--light); }
-.btn-o:hover { border-color:var(--teal);color:var(--teal);transform:translateY(-2px); }
+.btns{display:flex;gap:.8rem;flex-wrap:wrap;opacity:0;animation:up .5s .8s forwards}
+.btn{font-family:var(--mono);font-size:.72rem;padding:.65rem 1.3rem;border-radius:6px;text-decoration:none;display:inline-flex;align-items:center;gap:.45rem;transition:all .22s;letter-spacing:.06em;font-weight:500}
+.btn-fill{background:var(--cyan);color:var(--bg);font-weight:700}
+.btn-fill:hover{background:var(--cyan2);transform:translateY(-2px);box-shadow:0 6px 20px rgba(34,211,238,.25)}
+.btn-ghost{border:1px solid var(--border2);color:var(--light)}
+.btn-ghost:hover{border-color:var(--cyan);color:var(--cyan);transform:translateY(-2px)}
 
-/* ── PHOTO CARD ── */
-.photo-wrap { position:relative;opacity:0;animation:fadeIn .9s .4s forwards; }
-.photo-glow {
-  position:absolute;inset:-3px;border-radius:24px;
-  background:conic-gradient(from 0deg,var(--teal),var(--teal2),transparent,var(--teal));
-  animation:spin 8s linear infinite;
-  z-index:0;
-}
-@keyframes spin{to{transform:rotate(360deg)}}
-.photo-inner {
-  position:relative;z-index:1;
-  border-radius:22px;overflow:hidden;
-  background:var(--card);
-  margin:3px;
-}
-.photo-inner img {
-  width:100%;height:420px;object-fit:cover;object-position:top;
-  display:block;filter:brightness(.96) contrast(1.04);
-  transition:transform .5s;
-}
-.photo-wrap:hover .photo-inner img { transform:scale(1.03); }
+/* photo */
+.photo-col{opacity:0;animation:fadeIn .8s .3s forwards;position:relative}
+.photo-frame{position:relative;border-radius:20px;overflow:hidden}
+.photo-frame::before{content:'';position:absolute;inset:-1px;border-radius:20px;background:linear-gradient(135deg,var(--cyan),var(--violet),transparent,var(--cyan));z-index:0;animation:spin2 6s linear infinite}
+@keyframes spin2{to{transform:rotate(360deg)}}
+.photo-frame-inner{position:relative;z-index:1;border-radius:19px;overflow:hidden;margin:2px;background:var(--card)}
+.photo-frame-inner img{width:100%;height:400px;object-fit:cover;object-position:top;display:block;filter:brightness(.95);transition:transform .5s}
+.photo-frame:hover .photo-frame-inner img{transform:scale(1.04)}
 
-/* badges below photo */
-.photo-badges { display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1rem;justify-content:center; }
-.badge { font-family:var(--mono);font-size:.65rem;padding:.28rem .7rem;border-radius:100px;border:1px solid var(--border);color:var(--muted);background:var(--card);transition:all .2s; }
-.badge:hover { border-color:var(--teal);color:var(--teal); }
-.badge.g { border-color:rgba(244,168,50,.4);color:var(--gold); }
+.cert-badge{margin-top:1rem;background:var(--card);border:1px solid rgba(251,191,36,.3);border-radius:12px;padding:.85rem 1rem;display:flex;align-items:center;gap:.85rem}
+.cert-icon{width:36px;height:36px;border-radius:8px;background:rgba(251,191,36,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px}
+.cert-name{font-family:var(--mono);font-size:.72rem;font-weight:700;color:var(--amber);line-height:1.2}
+.cert-issuer{font-size:.68rem;color:var(--muted);margin-top:.15rem}
+.cert-verify{font-family:var(--mono);font-size:.62rem;color:var(--cyan);text-decoration:none;margin-top:.2rem;display:block;opacity:.7;transition:opacity .2s}
+.cert-verify:hover{opacity:1}
 
 /* ── SECTIONS ── */
-.sec { position:relative;z-index:1;padding:5rem 2.5rem;max-width:1100px;margin:0 auto; }
-.sec-hdr { display:flex;align-items:center;gap:1rem;margin-bottom:2.8rem; }
-.sec-tag { font-family:var(--mono);font-size:.68rem;color:var(--teal);letter-spacing:.22em;text-transform:uppercase;white-space:nowrap; }
-.sec-title { font-family:var(--display);font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;letter-spacing:-.02em; }
-.sec-line { flex:1;height:1px;background:linear-gradient(to right,var(--border),transparent); }
+.wrap{max-width:1140px;margin:0 auto;padding:5rem 2rem}
+.sec-label{display:flex;align-items:center;gap:.9rem;margin-bottom:3rem}
+.sec-num{font-family:var(--mono);font-size:.68rem;color:var(--cyan);letter-spacing:.2em}
+.sec-h{font-family:var(--disp);font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;letter-spacing:-.03em}
+.sec-rule{flex:1;height:1px;background:linear-gradient(to right,var(--border2),transparent)}
 
 /* ── SKILLS ── */
-.skills-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(235px,1fr));gap:1rem; }
-.skill-card {
-  background:var(--card);border:1px solid var(--border);border-radius:12px;
-  padding:1.2rem 1.3rem;position:relative;overflow:hidden;
-  transition:all .3s;opacity:0;transform:translateY(16px);
-}
-.skill-card.vis { opacity:1;transform:none; }
-.skill-card::before { content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--teal);border-radius:3px 0 0 3px; }
-.skill-card:hover { transform:translateY(-4px);border-color:var(--teal);box-shadow:0 12px 32px rgba(0,194,203,.1); }
-.skill-cat { font-family:var(--mono);font-size:.65rem;color:var(--teal);letter-spacing:.14em;text-transform:uppercase;margin-bottom:.55rem; }
-.skill-items { font-size:.88rem;color:var(--light);line-height:1.55;margin-bottom:.85rem; }
-.bar-wrap { height:4px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden; }
-.bar { height:100%;background:linear-gradient(to right,var(--teal),var(--teal2));border-radius:2px;width:0;transition:width 1.2s cubic-bezier(.4,0,.2,1); }
-.bar-pct { font-family:var(--mono);font-size:.62rem;color:var(--muted);float:right;margin-top:.28rem; }
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.85rem}
+.sk-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.2rem;position:relative;overflow:hidden;transition:all .3s;opacity:0;transform:translateY(14px)}
+.sk-card.vis{opacity:1;transform:none}
+.sk-card::after{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--cyan)}
+.sk-card:hover{border-color:var(--cyan);transform:translateY(-3px);box-shadow:0 8px 28px rgba(34,211,238,.08)}
+.sk-cat{font-family:var(--mono);font-size:.6rem;color:var(--cyan);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.5rem}
+.sk-items{font-size:.87rem;color:var(--light);line-height:1.5;margin-bottom:.8rem}
+.sk-bar-bg{height:3px;background:rgba(255,255,255,.05);border-radius:2px;overflow:hidden}
+.sk-bar{height:100%;background:linear-gradient(to right,var(--cyan),var(--violet));border-radius:2px;width:0;transition:width 1.3s cubic-bezier(.4,0,.2,1)}
+.sk-pct{font-family:var(--mono);font-size:.6rem;color:var(--muted);float:right;margin-top:.25rem}
 
 /* ── TIMELINE ── */
-.timeline { position:relative; }
-.timeline::before { content:'';position:absolute;left:19px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--teal),transparent); }
-.t-item { display:flex;gap:1.8rem;margin-bottom:2.2rem;opacity:0;transform:translateX(-18px);transition:all .6s; }
-.t-item.vis { opacity:1;transform:none; }
-.t-dot { flex-shrink:0;width:40px;height:40px;border-radius:50%;background:var(--card);border:2px solid var(--teal);display:flex;align-items:center;justify-content:center;font-size:1rem;z-index:1; }
-.t-body { flex:1;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.4rem;transition:border-color .3s; }
-.t-body:hover { border-color:var(--teal); }
-.t-head { display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:.5rem;margin-bottom:.4rem; }
-.t-role { font-family:var(--display);font-size:1.1rem;font-weight:700; }
-.t-badge { font-family:var(--mono);font-size:.65rem;padding:.22rem .7rem;border-radius:100px; }
-.t-badge.teal { background:rgba(0,194,203,.1);color:var(--teal);border:1px solid rgba(0,194,203,.25); }
-.t-badge.gold { background:rgba(244,168,50,.1);color:var(--gold);border:1px solid rgba(244,168,50,.25); }
-.t-company { font-family:var(--mono);font-size:.75rem;color:var(--teal);margin-bottom:.9rem; }
-.t-ach { list-style:none; }
-.t-ach li { font-size:.88rem;color:var(--light);padding:.35rem 0;border-bottom:1px solid rgba(255,255,255,.04);display:flex;gap:.55rem;align-items:flex-start; }
-.t-ach li::before { content:'▸';color:var(--teal);flex-shrink:0;margin-top:.05rem; }
+.tl{position:relative}
+.tl::before{content:'';position:absolute;left:20px;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--cyan),transparent)}
+.tl-item{display:flex;gap:2rem;margin-bottom:2rem;opacity:0;transform:translateX(-16px);transition:all .55s}
+.tl-item.vis{opacity:1;transform:none}
+.tl-dot{flex-shrink:0;width:40px;height:40px;border-radius:50%;background:var(--card);border:1.5px solid var(--cyan);display:flex;align-items:center;justify-content:center;font-size:.9rem;z-index:1}
+.tl-body{flex:1;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.4rem;transition:border-color .25s}
+.tl-body:hover{border-color:var(--border2)}
+.tl-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:.5rem;margin-bottom:.3rem}
+.tl-role{font-family:var(--disp);font-size:1.05rem;font-weight:700}
+.tl-tag{font-family:var(--mono);font-size:.62rem;padding:.2rem .65rem;border-radius:20px}
+.tl-tag.gold{background:rgba(251,191,36,.1);color:var(--amber);border:1px solid rgba(251,191,36,.2)}
+.tl-tag.cyan{background:rgba(34,211,238,.08);color:var(--cyan);border:1px solid rgba(34,211,238,.2)}
+.tl-co{font-family:var(--mono);font-size:.72rem;color:var(--cyan);margin-bottom:.9rem}
+.tl-list{list-style:none}
+.tl-list li{font-size:.87rem;color:var(--light);padding:.32rem 0;border-bottom:1px solid rgba(255,255,255,.03);display:flex;gap:.5rem;align-items:flex-start;line-height:1.5}
+.tl-list li::before{content:'›';color:var(--cyan);flex-shrink:0}
 
 /* ── PROJECTS ── */
-.proj-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.2rem; }
-.proj-card {
-  background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.4rem;
-  position:relative;overflow:hidden;transition:all .3s;
-  opacity:0;transform:translateY(18px);
-}
-.proj-card.vis { opacity:1;transform:none; }
-.proj-card:hover { border-color:var(--teal);box-shadow:0 16px 40px rgba(0,194,203,.1);transform:translateY(-4px); }
-.proj-card::after { content:'';position:absolute;inset:0;background:radial-gradient(circle at 85% 15%,rgba(0,194,203,.05),transparent 55%);pointer-events:none; }
-.proj-impact { font-family:var(--mono);font-size:.65rem;padding:.22rem .65rem;border-radius:100px;background:rgba(244,168,50,.1);color:var(--gold);border:1px solid rgba(244,168,50,.22);display:inline-block;margin-bottom:.8rem; }
-.proj-title { font-family:var(--display);font-size:1rem;font-weight:700;margin-bottom:.35rem; }
-.proj-tech { font-family:var(--mono);font-size:.68rem;color:var(--teal2);margin-bottom:.75rem;font-style:italic; }
-.proj-challenge-label,.proj-result-label { font-family:var(--mono);font-size:.62rem;text-transform:uppercase;letter-spacing:.12em;margin:.6rem 0 .25rem; }
-.proj-challenge-label { color:var(--muted); }
-.proj-result-label { color:var(--teal); }
-.proj-desc { font-size:.85rem;color:#8aaccc;line-height:1.6; }
-.proj-ul { list-style:none;font-size:.84rem;color:#8aaccc;line-height:1.6; }
-.proj-ul li::before { content:'→ ';color:var(--teal); }
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:1.1rem}
+.proj-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.4rem;position:relative;overflow:hidden;transition:all .28s;opacity:0;transform:translateY(16px)}
+.proj-card.vis{opacity:1;transform:none}
+.proj-card:hover{border-color:var(--border2);transform:translateY(-4px);box-shadow:0 14px 36px rgba(0,0,0,.3)}
+.proj-card.featured{border-color:rgba(34,211,238,.25);background:linear-gradient(135deg,var(--card2),var(--card))}
+.proj-tag{font-family:var(--mono);font-size:.63rem;padding:.2rem .62rem;border-radius:20px;background:rgba(251,191,36,.1);color:var(--amber);border:1px solid rgba(251,191,36,.2);display:inline-block;margin-bottom:.8rem}
+.proj-tag.cyan{background:rgba(34,211,238,.08);color:var(--cyan);border-color:rgba(34,211,238,.2)}
+.proj-tag.violet{background:rgba(129,140,248,.1);color:var(--violet);border-color:rgba(129,140,248,.2)}
+.proj-tag.rose{background:rgba(251,113,133,.1);color:var(--rose);border-color:rgba(251,113,133,.2)}
+.proj-h{font-family:var(--disp);font-size:1rem;font-weight:700;margin-bottom:.35rem}
+.proj-tech{font-family:var(--mono);font-size:.65rem;color:var(--cyan2);margin-bottom:.7rem;font-style:italic}
+.proj-body{font-size:.84rem;color:#7fa8c8;line-height:1.65}
+.proj-ul{list-style:none;margin-top:.5rem}
+.proj-ul li{font-size:.83rem;color:#7fa8c8;padding:.2rem 0;line-height:1.5}
+.proj-ul li::before{content:'→ ';color:var(--cyan);font-family:var(--mono)}
 
-/* ── GITHUB STATS ── */
-.gh-grid { display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;margin-bottom:1.1rem; }
-.gh-card { background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:border-color .3s; }
-.gh-card:hover { border-color:var(--teal); }
-.gh-card img { width:100%;display:block; }
-.gh-streak { background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:border-color .3s; }
-.gh-streak:hover { border-color:var(--gold); }
-.gh-streak img { width:100%;display:block; }
-/* fallback message if image fails */
-.gh-fallback { display:none;padding:1.5rem;text-align:center;font-family:var(--mono);font-size:.78rem;color:var(--muted); }
-.gh-fallback a { color:var(--teal);text-decoration:none; }
+/* ── CERTIFICATIONS ── */
+.cert-section{background:var(--surface);border-radius:16px;border:1px solid rgba(251,191,36,.15);padding:2rem;margin-bottom:1rem}
+.cert-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.cert-left{display:flex;align-items:center;gap:1.1rem}
+.cert-ico{width:52px;height:52px;border-radius:12px;background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.25);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
+.cert-info-name{font-family:var(--disp);font-size:1.1rem;font-weight:700;color:var(--white);margin-bottom:.2rem}
+.cert-info-issuer{font-family:var(--mono);font-size:.72rem;color:var(--amber);margin-bottom:.2rem}
+.cert-info-date{font-size:.78rem;color:var(--muted)}
+.cert-right{display:flex;flex-direction:column;align-items:flex-end;gap:.5rem}
+.cert-badge-pill{font-family:var(--mono);font-size:.68rem;padding:.3rem .85rem;border-radius:20px;background:rgba(251,191,36,.1);color:var(--amber);border:1px solid rgba(251,191,36,.25)}
+.cert-link{font-family:var(--mono);font-size:.68rem;color:var(--cyan);text-decoration:none;display:flex;align-items:center;gap:.3rem;opacity:.8;transition:opacity .2s}
+.cert-link:hover{opacity:1}
+.cert-id{font-family:var(--mono);font-size:.65rem;color:var(--muted);margin-top:.3rem}
+
+/* ── GITHUB ── */
+.gh-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+.gh-card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:border-color .25s}
+.gh-card:hover{border-color:var(--border2)}
+.gh-card img,.gh-streak img{width:100%;display:block}
+.gh-streak{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:border-color .25s}
+.gh-streak:hover{border-color:rgba(251,191,36,.3)}
+.gh-fb{display:none;padding:1.2rem;text-align:center;font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+.gh-fb a{color:var(--cyan);text-decoration:none}
 
 /* ── CONTACT ── */
-.contact-wrap { display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start; }
-.contact-cta { font-family:var(--display);font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;line-height:1.1;margin-bottom:.9rem; }
-.contact-cta .a { color:var(--teal); }
-.contact-sub { font-size:.93rem;color:var(--muted);line-height:1.7;margin-bottom:1.8rem; }
-.contact-links { display:flex;flex-direction:column;gap:.7rem; }
-.c-link { display:flex;align-items:center;gap:1rem;padding:.9rem 1.2rem;background:var(--card);border:1px solid var(--border);border-radius:10px;text-decoration:none;color:var(--light);font-size:.88rem;transition:all .25s; }
-.c-link:hover { border-color:var(--teal);color:var(--teal);transform:translateX(5px); }
-.c-link i { font-size:1rem;color:var(--teal);width:20px;text-align:center; }
-.c-label { font-family:var(--mono);font-size:.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;display:block; }
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.c-headline{font-family:var(--disp);font-size:clamp(2rem,5vw,3rem);font-weight:800;line-height:1.05;letter-spacing:-.03em;margin-bottom:.8rem}
+.c-headline .hi{color:var(--cyan)}
+.c-sub{font-size:.93rem;color:var(--muted);line-height:1.7;margin-bottom:1.8rem}
+.c-links{display:flex;flex-direction:column;gap:.65rem}
+.c-link{display:flex;align-items:center;gap:.9rem;padding:.85rem 1.1rem;background:var(--card);border:1px solid var(--border);border-radius:10px;text-decoration:none;color:var(--light);font-size:.87rem;transition:all .22s}
+.c-link:hover{border-color:var(--border2);color:var(--cyan);transform:translateX(4px)}
+.c-link i{width:18px;text-align:center;color:var(--cyan);font-size:.9rem}
+.c-lbl{font-family:var(--mono);font-size:.6rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:.1rem}
 
 /* ── QUOTE ── */
-.quote-bar { position:relative;z-index:1;padding:2.5rem;text-align:center;background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border); }
-.quote-text { font-family:var(--display);font-size:clamp(1rem,2vw,1.35rem);font-weight:600;max-width:660px;margin:0 auto .4rem;line-height:1.5; }
-.quote-attr { font-family:var(--mono);font-size:.68rem;color:var(--teal);letter-spacing:.12em; }
+.quote{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:3rem 2rem;text-align:center}
+.quote-t{font-family:var(--disp);font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:700;max-width:680px;margin:0 auto .5rem;line-height:1.45}
+.quote-a{font-family:var(--mono);font-size:.65rem;color:var(--cyan);letter-spacing:.15em}
 
 /* ── FOOTER ── */
-footer { position:relative;z-index:1;padding:1.8rem 2.5rem;text-align:center;border-top:1px solid var(--border);font-family:var(--mono);font-size:.7rem;color:var(--muted); }
-footer span { color:var(--teal); }
+footer{padding:1.8rem 3rem;text-align:center;border-top:1px solid var(--border);font-family:var(--mono);font-size:.68rem;color:var(--muted)}
+footer b{color:var(--cyan)}
 
-/* ── ANIMATIONS ── */
-@keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:none} }
-@keyframes fadeIn { from{opacity:0} to{opacity:1} }
-
-/* ── SCROLLBAR ── */
+/* ── UTILS ── */
+@keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
 ::-webkit-scrollbar{width:4px}
 ::-webkit-scrollbar-track{background:var(--bg)}
-::-webkit-scrollbar-thumb{background:var(--teal);border-radius:10px}
+::-webkit-scrollbar-thumb{background:var(--cyan2);border-radius:4px}
 
-/* ── RESPONSIVE ── */
-@media(max-width:860px){
-  .hero-inner{grid-template-columns:1fr}
-  .photo-wrap{order:-1;max-width:300px;margin:0 auto}
-  .photo-inner img{height:300px}
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;padding-top:6rem}
+  .photo-col{order:-1;max-width:280px;margin:0 auto}
+  .photo-frame-inner img{height:280px}
+  .kpis{grid-template-columns:repeat(2,1fr)}
   .gh-grid{grid-template-columns:1fr}
-  .contact-wrap{grid-template-columns:1fr}
-  nav{padding:1rem 1.5rem}
+  .contact-grid{grid-template-columns:1fr}
+  nav{padding:.8rem 1.5rem}
   .nav-links{gap:1.1rem}
-  .sec{padding:3.5rem 1.5rem}
+  .nav-links a{font-size:.62rem}
+  .wrap{padding:4rem 1.5rem}
 }
 @media(max-width:560px){
-  .hero-stats{gap:1rem}
-  .stat-num{font-size:1.5rem}
-  .nav-links a{font-size:.62rem;letter-spacing:.06em}
+  .kpis{grid-template-columns:repeat(2,1fr)}
+  .nav-cta{display:none}
 }
 </style>
 </head>
@@ -238,61 +233,61 @@ footer span { color:var(--teal); }
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo"><b>rohit</b>.patel<span style="color:var(--teal)">_</span></div>
+  <div class="nav-logo"><span>rohit</span>.patel<span style="color:var(--cyan)">_</span></div>
   <ul class="nav-links">
-    <li><a href="#hero">home</a></li>
+    <li><a href="#home">home</a></li>
     <li><a href="#skills">skills</a></li>
-    <li><a href="#experience">exp</a></li>
+    <li><a href="#exp">exp</a></li>
     <li><a href="#projects">projects</a></li>
+    <li><a href="#certs">certs</a></li>
     <li><a href="#github">github</a></li>
     <li><a href="#contact">contact</a></li>
   </ul>
+  <a href="mailto:rps.241298@gmail.com" class="nav-cta">hire me →</a>
 </nav>
 
 <!-- HERO -->
-<section id="hero" style="max-width:100%;padding:0;">
-<div id="hero" style="position:relative;z-index:1;min-height:100vh;display:flex;align-items:center;padding:6rem 2.5rem 4rem;background:radial-gradient(ellipse at 70% 10%,rgba(0,194,203,.07) 0%,transparent 55%);">
-  <div class="hero-inner">
-    <div>
-      <div class="hero-tag">// Senior Full-Stack Developer</div>
-      <h1 class="hero-name">Rohit<br><span class="a">Patel</span></h1>
-      <div class="hero-role">Laravel · Node.js · Shopify App Architect · DevOps Enthusiast</div>
-      <div class="typewriter-wrap"><span id="tw"></span></div>
-      <div class="hero-stats">
-        <div class="stat-item"><span class="stat-num" data-target="3" data-suffix="+">0</span><span class="stat-label">Years Exp</span></div>
-        <div class="stat-item"><span class="stat-num" data-target="5" data-suffix="+">0</span><span class="stat-label">Shopify Apps</span></div>
-        <div class="stat-item"><span class="stat-num" data-target="2" data-suffix="M+">0</span><span class="stat-label">Req/Month</span></div>
-        <div class="stat-item"><span class="stat-num" data-target="10" data-suffix="M+">0</span><span class="stat-label">Records</span></div>
-      </div>
-      <div class="hero-btns">
-        <a href="#contact" class="btn btn-p">📬 Hire Me</a>
-        <a href="#projects" class="btn btn-o">🚀 Projects</a>
-        <a href="https://github.com/rohitpatel-codes" target="_blank" class="btn btn-o"><i class="fab fa-github"></i> GitHub</a>
-      </div>
+<section id="home" style="position:relative;z-index:1;background:radial-gradient(ellipse at 65% 0%,rgba(34,211,238,.06) 0%,transparent 55%)">
+<div class="hero">
+  <div>
+    <div class="hero-eyebrow">Senior Full-Stack Developer</div>
+    <h1 class="hero-name">
+      Rohit<span class="hi">.</span>
+      <span class="line2">Patel</span>
+    </h1>
+    <p class="hero-sub">Laravel · Node.js · Shopify App Architect · AWS Lambda · DevOps Enthusiast. Building systems that scale to millions — with AI-assisted workflows.</p>
+    <div class="tw-wrap"><span id="tw"></span></div>
+    <div class="kpis">
+      <div class="kpi"><span class="kpi-n" data-target="3" data-suffix="+">0</span><div class="kpi-l">Years exp</div></div>
+      <div class="kpi"><span class="kpi-n" data-target="5" data-suffix="+">0</span><div class="kpi-l">Shopify apps</div></div>
+      <div class="kpi"><span class="kpi-n" data-target="2" data-suffix="M+">0</span><div class="kpi-l">Req/month</div></div>
+      <div class="kpi"><span class="kpi-n" data-target="10" data-suffix="M+">0</span><div class="kpi-l">Records</div></div>
     </div>
+    <div class="btns">
+      <a href="#contact" class="btn btn-fill">📬 Hire Me</a>
+      <a href="#projects" class="btn btn-ghost">🚀 Projects</a>
+      <a href="https://github.com/rohitpatel-codes" target="_blank" class="btn btn-ghost"><i class="fab fa-github"></i> GitHub</a>
+    </div>
+  </div>
 
-    <!-- REAL PHOTO -->
-    <div class="photo-wrap">
-      <div class="photo-glow"></div>
-      <div class="photo-inner">
-        <img
-          src="https://lh3.googleusercontent.com/d/1HSnmXY4t2y51Gz7ODXVzoodb9WkDoKX0"
-          alt="Rohit Patel"
-          onerror="this.style.display='none';document.getElementById('avatar-fallback').style.display='flex'"
-        />
-        <!-- fallback if photo doesn't load -->
-        <div id="avatar-fallback" style="display:none;width:100%;height:420px;background:var(--card);align-items:center;justify-content:center;flex-direction:column;gap:.5rem;">
-          <div style="font-family:var(--display);font-size:5rem;font-weight:800;color:var(--teal);">RP</div>
-          <div style="font-family:var(--mono);font-size:.7rem;color:var(--muted);">FULL STACK DEV</div>
+  <div class="photo-col">
+    <div class="photo-frame">
+      <div class="photo-frame-inner">
+        <img src="https://lh3.googleusercontent.com/d/1HSnmXY4t2y51Gz7ODXVzoodb9WkDoKX0" alt="Rohit Patel"
+          onerror="this.style.display='none';document.getElementById('fb').style.display='flex'"/>
+        <div id="fb" style="display:none;width:100%;height:400px;background:var(--card);align-items:center;justify-content:center;flex-direction:column;gap:.5rem">
+          <div style="font-family:var(--disp);font-size:5rem;font-weight:800;color:var(--cyan)">RP</div>
+          <div style="font-family:var(--mono);font-size:.65rem;color:var(--muted)">FULL STACK DEV</div>
         </div>
       </div>
-      <div class="photo-badges">
-        <span class="badge g">🏆 Shopify Expert</span>
-        <span class="badge">⚡ Laravel</span>
-        <span class="badge">☁️ AWS</span>
-        <span class="badge">🐳 Docker</span>
-        <span class="badge">🔗 GraphQL</span>
-        <span class="badge g">🚀 10M+ Scale</span>
+    </div>
+    <!-- CERTIFICATE BADGE under photo -->
+    <div class="cert-badge">
+      <div class="cert-icon">🏆</div>
+      <div>
+        <div class="cert-name">Claude Code in Action</div>
+        <div class="cert-issuer">Anthropic Education · Apr 2026</div>
+        <a href="http://verify.skilljar.com/c/qfuzrnkzy8zp" target="_blank" class="cert-verify">verify certificate →</a>
       </div>
     </div>
   </div>
@@ -300,60 +295,61 @@ footer span { color:var(--teal); }
 </section>
 
 <!-- SKILLS -->
-<div class="sec" id="skills">
-  <div class="sec-hdr">
-    <div class="sec-tag">02.</div>
-    <h2 class="sec-title">Technical Toolbox</h2>
-    <div class="sec-line"></div>
+<div class="wrap" id="skills">
+  <div class="sec-label">
+    <div class="sec-num">02 /</div>
+    <h2 class="sec-h">Technical Toolbox</h2>
+    <div class="sec-rule"></div>
   </div>
   <div class="skills-grid">
-    <div class="skill-card" data-pct="92"><div class="skill-cat">Backend</div><div class="skill-items">PHP · Laravel · Node.js</div><div class="bar-wrap"><div class="bar"></div></div><div class="bar-pct">92%</div></div>
-    <div class="skill-card" data-pct="94"><div class="skill-cat">API & E-Commerce</div><div class="skill-items">REST · GraphQL · Shopify API</div><div class="bar-wrap"><div class="bar"></div></div><div class="bar-pct">94%</div></div>
-    <div class="skill-card" data-pct="85"><div class="skill-cat">Frontend</div><div class="skill-items">React.js · Remix · Tailwind · JavaScript</div><div class="bar-wrap"><div class="bar"></div></div><div class="bar-pct">85%</div></div>
-    <div class="skill-card" data-pct="88"><div class="skill-cat">Database</div><div class="skill-items">MySQL · PostgreSQL · MongoDB</div><div class="bar-wrap"><div class="bar"></div></div><div class="bar-pct">88%</div></div>
-    <div class="skill-card" data-pct="80"><div class="skill-cat">Cloud & DevOps</div><div class="skill-items">AWS EC2/S3 · DigitalOcean · Fly.io · Vercel · K8s</div><div class="bar-wrap"><div class="bar"></div></div><div class="bar-pct">80%</div></div>
-    <div class="skill-card" data-pct="82"><div class="skill-cat">Tools</div><div class="skill-items">Docker · Git · Jenkins · Terraform · Nginx</div><div class="bar-wrap"><div class="bar"></div></div><div class="bar-pct">82%</div></div>
-    <div class="skill-card" data-pct="87"><div class="skill-cat">Payments</div><div class="skill-items">Razorpay · Stripe · PayPal</div><div class="bar-wrap"><div class="bar"></div></div><div class="bar-pct">87%</div></div>
-    <div class="skill-card" data-pct="78"><div class="skill-cat">Architecture</div><div class="skill-items">Microservices · Webhooks · AI Tools (Claude, Codex)</div><div class="bar-wrap"><div class="bar"></div></div><div class="bar-pct">78%</div></div>
+    <div class="sk-card" data-pct="92"><div class="sk-cat">Backend</div><div class="sk-items">PHP · Laravel · Node.js</div><div class="sk-bar-bg"><div class="sk-bar"></div></div><div class="sk-pct">92%</div></div>
+    <div class="sk-card" data-pct="94"><div class="sk-cat">API & E-Commerce</div><div class="sk-items">REST · GraphQL · Shopify API · BFS</div><div class="sk-bar-bg"><div class="sk-bar"></div></div><div class="sk-pct">94%</div></div>
+    <div class="sk-card" data-pct="85"><div class="sk-cat">Frontend</div><div class="sk-items">React.js · Remix (SSR) · Tailwind · JavaScript</div><div class="sk-bar-bg"><div class="sk-bar"></div></div><div class="sk-pct">85%</div></div>
+    <div class="sk-card" data-pct="88"><div class="sk-cat">Database</div><div class="sk-items">MySQL · PostgreSQL · MongoDB Atlas</div><div class="sk-bar-bg"><div class="sk-bar"></div></div><div class="sk-pct">88%</div></div>
+    <div class="sk-card" data-pct="82"><div class="sk-cat">Cloud & DevOps</div><div class="sk-items">AWS Lambda · EC2 · S3 · EKS · Fly.io · Vercel</div><div class="sk-bar-bg"><div class="sk-bar"></div></div><div class="sk-pct">82%</div></div>
+    <div class="sk-card" data-pct="80"><div class="sk-cat">Tools</div><div class="sk-items">Docker · Git · Jenkins · Terraform · Nginx · K8s</div><div class="sk-bar-bg"><div class="sk-bar"></div></div><div class="sk-pct">80%</div></div>
+    <div class="sk-card" data-pct="87"><div class="sk-cat">Payments</div><div class="sk-items">Razorpay · Stripe · PayPal · Shopify Billing API</div><div class="sk-bar-bg"><div class="sk-bar"></div></div><div class="sk-pct">87%</div></div>
+    <div class="sk-card" data-pct="83"><div class="sk-cat">AI Tools</div><div class="sk-items">Claude AI · OpenAI Codex · GitHub Copilot</div><div class="sk-bar-bg"><div class="sk-bar"></div></div><div class="sk-pct">83%</div></div>
   </div>
 </div>
 
 <!-- EXPERIENCE -->
-<div class="sec" id="experience">
-  <div class="sec-hdr">
-    <div class="sec-tag">03.</div>
-    <h2 class="sec-title">Work Experience</h2>
-    <div class="sec-line"></div>
+<div class="wrap" id="exp">
+  <div class="sec-label">
+    <div class="sec-num">03 /</div>
+    <h2 class="sec-h">Work Experience</h2>
+    <div class="sec-rule"></div>
   </div>
-  <div class="timeline">
-    <div class="t-item">
-      <div class="t-dot">💼</div>
-      <div class="t-body">
-        <div class="t-head">
-          <div class="t-role">Full Stack Developer</div>
-          <span class="t-badge gold">Primary · 3 Years</span>
+  <div class="tl">
+    <div class="tl-item">
+      <div class="tl-dot">💼</div>
+      <div class="tl-body">
+        <div class="tl-top">
+          <div class="tl-role">Full Stack Developer</div>
+          <span class="tl-tag gold">Primary · 3 Years</span>
         </div>
-        <div class="t-company">ITGeeks · Jan 2022 – Present</div>
-        <ul class="t-ach">
-          <li>Built Shopify multi-store inventory system syncing 30,000+ products weekly across 6 stores — improved stock accuracy to 100%</li>
-          <li>Engineered high-speed product sync via Kimpex API managing 10 Million+ records with sub-500ms search response using Redis & chunking</li>
-          <li>Developed Remix-based public Shopify App on AWS EKS — 1–2M requests/month with 99.9% uptime during flash sales</li>
-          <li>Reduced image load time by 30% in Template Customization System via AWS S3 optimization (10K+ monthly users)</li>
-          <li>Integrated Razorpay, Stripe & PayPal with secure PCI-compliant checkout flows across multiple projects</li>
-          <li>Built automated CRM with rule-based email triggers; improved customer engagement by 40%</li>
+        <div class="tl-co">ITGeeks · Jan 2022 – Present · Dewas, M.P.</div>
+        <ul class="tl-list">
+          <li>Built public Shopify App (Remix + Fly.io + MongoDB Atlas) handling <strong>1–2M requests/month</strong> with 99.9% uptime — led Shopify App Review &amp; BFS compliance</li>
+          <li>Developed Post-Purchase Order Modification Extension used by 15+ support agents — reduced order errors by 25%</li>
+          <li>Designed Webhook Handling System with <strong>AWS Lambda</strong> for serverless event-driven processing of Shopify events</li>
+          <li>Engineered high-speed product sync via Kimpex API managing <strong>10M+ product records</strong> with sub-500ms search using Redis &amp; chunking (60% faster)</li>
+          <li>Built multi-store inventory system syncing 30K+ products weekly across 6 stores — 100% stock accuracy</li>
+          <li>Integrated Razorpay, Stripe &amp; PayPal with PCI-compliant flows; built B2B Wholesale Shopify App with real-time sync</li>
+          <li>Leveraged <strong>Claude AI &amp; OpenAI Codex</strong> daily — cut development time by ~25%</li>
         </ul>
       </div>
     </div>
-    <div class="t-item">
-      <div class="t-dot">🖥️</div>
-      <div class="t-body">
-        <div class="t-head">
-          <div class="t-role">Software Developer</div>
-          <span class="t-badge teal">7 Months</span>
+    <div class="tl-item">
+      <div class="tl-dot">🖥️</div>
+      <div class="tl-body">
+        <div class="tl-top">
+          <div class="tl-role">Software Developer</div>
+          <span class="tl-tag cyan">7 Months</span>
         </div>
-        <div class="t-company">Expound Soft Tech Solution Pvt. Ltd.</div>
-        <ul class="t-ach">
-          <li>Developed backend modules and CRUD systems using Core PHP & Laravel</li>
+        <div class="tl-co">Expound Soft Tech Solution Pvt. Ltd.</div>
+        <ul class="tl-list">
+          <li>Developed backend modules and CRUD systems using Core PHP &amp; Laravel</li>
           <li>Built RESTful APIs and integrated third-party services for client projects</li>
         </ul>
       </div>
@@ -362,261 +358,239 @@ footer span { color:var(--teal); }
 </div>
 
 <!-- PROJECTS -->
-<div class="sec" id="projects">
-  <div class="sec-hdr">
-    <div class="sec-tag">04.</div>
-    <h2 class="sec-title">Major Projects & Case Studies</h2>
-    <div class="sec-line"></div>
+<div class="wrap" id="projects">
+  <div class="sec-label">
+    <div class="sec-num">04 /</div>
+    <h2 class="sec-h">Major Projects</h2>
+    <div class="sec-rule"></div>
   </div>
   <div class="proj-grid">
 
-    <div class="proj-card">
-      <div class="proj-impact">10M+ Records</div>
-      <div class="proj-title">High-Speed Product Sync</div>
-      <div class="proj-tech">Laravel · PostgreSQL · Kimpex API · Redis</div>
-      <div class="proj-challenge-label">Challenge</div>
-      <div class="proj-desc">Managing 1Cr+ product records from third-party APIs — traditional syncing caused massive DB locks and latency.</div>
-      <div class="proj-result-label">Result</div>
-      <ul class="proj-ul"><li>Microservices architecture for data ingestion</li><li>Sub-500ms search retrieval</li><li>60% faster sync via Redis & chunking</li></ul>
+    <div class="proj-card featured">
+      <div class="proj-tag cyan">1–2M Req/Month · 99.9% Uptime</div>
+      <div class="proj-h">Public Shopify App — Post-Purchase Order Modification</div>
+      <div class="proj-tech">Remix · Node.js · MongoDB Atlas · Fly.io · AWS Lambda · Shopify BFS</div>
+      <div class="proj-body">
+        Built & scaled a high-traffic public Shopify application with full BFS compliance.
+        <ul class="proj-ul">
+          <li>Post-Purchase Order Modification Extension — real-time item, shipping &amp; customer updates</li>
+          <li>AWS Lambda webhook system for Shopify events (order create/update/cancel)</li>
+          <li>Email automation triggered by order lifecycle events</li>
+          <li>15+ internal support agents — reduced order errors by 25%</li>
+          <li>Remix SSR for peak-load optimization during flash sales</li>
+        </ul>
+      </div>
     </div>
 
     <div class="proj-card">
-      <div class="proj-impact">30K+ Products</div>
-      <div class="proj-title">Multi-Store Inventory (Shopify)</div>
-      <div class="proj-tech">Node.js · Docker · Webhooks · Stripe</div>
-      <div class="proj-challenge-label">Challenge</div>
-      <div class="proj-desc">Syncing 30,000+ products across 6 independent Shopify stores with real-time stock accuracy.</div>
-      <div class="proj-result-label">Result</div>
-      <ul class="proj-ul"><li>Containerized sync engine with Docker</li><li>Automated Excel imports & Stripe billing</li><li>100% stock accuracy across all storefronts</li></ul>
+      <div class="proj-tag">10M+ Records · -60% Sync Time</div>
+      <div class="proj-h">High-Speed Product Sync</div>
+      <div class="proj-tech">Laravel · PostgreSQL · Kimpex API · Redis · Microservices</div>
+      <div class="proj-body">Managed 10M+ product records from Kimpex API. Redis chunking eliminated DB locks — sub-500ms search retrieval, 60% faster sync.</div>
     </div>
 
     <div class="proj-card">
-      <div class="proj-impact">2M Req/Month</div>
-      <div class="proj-title">Public Remix Shopify App</div>
-      <div class="proj-tech">Remix · Node.js · MongoDB · AWS K8s · Terraform</div>
-      <div class="proj-challenge-label">Challenge</div>
-      <div class="proj-desc">Handling 1–2 Million requests/month on a public store-facing application with zero downtime tolerance.</div>
-      <div class="proj-result-label">Result</div>
-      <ul class="proj-ul"><li>AWS EKS + Kubernetes + Terraform deployment</li><li>Lightning-fast SSR with Remix</li><li>99.9% uptime during Shopify flash sales</li></ul>
+      <div class="proj-tag violet">30K+ Products · 6 Stores</div>
+      <div class="proj-h">Multi-Store Shopify Inventory Hub</div>
+      <div class="proj-tech">Node.js · Docker · Shopify API · Webhooks · Stripe</div>
+      <div class="proj-body">Real-time inventory sync across 6 independent stores. Containerized with Docker, automated Excel imports &amp; Stripe billing. 100% stock accuracy.</div>
     </div>
 
     <div class="proj-card">
-      <div class="proj-impact">Multi-Store</div>
-      <div class="proj-title">Wholesale (B2B) Sync System</div>
-      <div class="proj-tech">Laravel · Shopify API · Webhooks</div>
-      <div class="proj-challenge-label">Challenge</div>
-      <div class="proj-desc">Automating product & order sync between B2B and B2C storefronts in real-time.</div>
-      <div class="proj-result-label">Result</div>
-      <ul class="proj-ul"><li>Robust Webhook listener for multi-store updates</li><li>Automated order routing & inventory reservation</li></ul>
+      <div class="proj-tag rose">Multi-Store · Serverless</div>
+      <div class="proj-h">Custom Shipping + B2B Wholesale Apps</div>
+      <div class="proj-tech">Laravel · PostgreSQL · Shopify API · AWS Lambda · Kubernetes</div>
+      <div class="proj-body">Dual Shopify apps: dynamic shipping rules engine with K8s auto-scaling, and B2B wholesale sync via Webhooks. AWS Lambda for serverless background jobs.</div>
     </div>
 
     <div class="proj-card">
-      <div class="proj-impact">-30% Load Time</div>
-      <div class="proj-title">Template Customization System</div>
-      <div class="proj-tech">Laravel · PostgreSQL · AWS S3</div>
-      <div class="proj-challenge-label">Challenge</div>
-      <div class="proj-desc">Image personalization platform for 10K+ monthly users with slow load times impacting conversion.</div>
-      <div class="proj-result-label">Result</div>
-      <ul class="proj-ul"><li>30% load time reduction via S3 optimization</li><li>Scaled to 10K+ monthly customizations</li></ul>
+      <div class="proj-tag">+40% Engagement · AI-Powered</div>
+      <div class="proj-h">CRM + Analytics + Email Automation</div>
+      <div class="proj-tech">Node.js · React.js · MongoDB · PostgreSQL · Claude AI · Codex</div>
+      <div class="proj-body">Full CRM with client/payment management, store analytics dashboard, and condition-based email automation. Integrated Claude AI for content generation.</div>
     </div>
 
     <div class="proj-card">
-      <div class="proj-impact">+40% Engagement</div>
-      <div class="proj-title">CRM & Email Automation</div>
-      <div class="proj-tech">React.js · Node.js · MongoDB</div>
-      <div class="proj-challenge-label">Challenge</div>
-      <div class="proj-desc">Custom CRM to manage client payments, applications, and automate post-purchase follow-ups.</div>
-      <div class="proj-result-label">Result</div>
-      <ul class="proj-ul"><li>Rule-based email automation via Shopify API</li><li>40% improvement in customer engagement</li></ul>
+      <div class="proj-tag violet">-30% Load Time · 10K+ Users</div>
+      <div class="proj-h">Template Customization System</div>
+      <div class="proj-tech">Laravel · PostgreSQL · AWS S3 · CDN</div>
+      <div class="proj-body">Image personalization platform with AWS S3-CDN delivery. 30% load time reduction, scaled to 10K+ monthly customizations with high availability.</div>
     </div>
 
   </div>
 </div>
 
-<!-- GITHUB STATS -->
-<div class="sec" id="github">
-  <div class="sec-hdr">
-    <div class="sec-tag">05.</div>
-    <h2 class="sec-title">GitHub Activity</h2>
-    <div class="sec-line"></div>
+<!-- CERTIFICATIONS -->
+<div class="wrap" id="certs">
+  <div class="sec-label">
+    <div class="sec-num">05 /</div>
+    <h2 class="sec-h">Certifications</h2>
+    <div class="sec-rule"></div>
   </div>
 
+  <div class="cert-section">
+    <div class="cert-row">
+      <div class="cert-left">
+        <div class="cert-ico">🏆</div>
+        <div>
+          <div class="cert-info-name">Claude Code in Action</div>
+          <div class="cert-info-issuer">Anthropic Education</div>
+          <div class="cert-info-date">Issued: April 5, 2026 · No expiration</div>
+        </div>
+      </div>
+      <div class="cert-right">
+        <span class="cert-badge-pill">✓ Verified</span>
+        <a href="http://verify.skilljar.com/c/qfuzrnkzy8zp" target="_blank" class="cert-link">
+          <i class="fas fa-external-link-alt" style="font-size:.6rem"></i> verify certificate
+        </a>
+        <div class="cert-id">ID: qfuzrnkzy8zp</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:.85rem;padding:1.1rem 1.4rem;background:var(--card);border:1px solid var(--border);border-radius:12px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.7rem;opacity:.6">
+    <div style="display:flex;align-items:center;gap:.85rem">
+      <div style="width:42px;height:42px;border-radius:10px;background:rgba(100,116,139,.1);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:18px">📚</div>
+      <div>
+        <div style="font-family:var(--disp);font-size:.95rem;font-weight:600;color:var(--light)">Shopify App Development Certification</div>
+        <div style="font-family:var(--mono);font-size:.68rem;color:var(--muted)">Shopify Partner Academy · In progress</div>
+      </div>
+    </div>
+    <span style="font-family:var(--mono);font-size:.65rem;padding:.2rem .7rem;border-radius:20px;background:rgba(100,116,139,.1);color:var(--muted);border:1px solid var(--border)">Coming soon</span>
+  </div>
+</div>
+
+<!-- GITHUB -->
+<div class="wrap" id="github">
+  <div class="sec-label">
+    <div class="sec-num">06 /</div>
+    <h2 class="sec-h">GitHub Activity</h2>
+    <div class="sec-rule"></div>
+  </div>
   <div class="gh-grid">
     <div class="gh-card">
-      <img
-        src="https://github-readme-stats.vercel.app/api?username=rohitpatel-codes&show_icons=true&theme=transparent&hide_border=true&include_all_commits=true&count_private=true&title_color=00c2cb&icon_color=f4a832&text_color=c4d8f0&bg_color=0f1e35"
-        alt="GitHub Stats"
-        loading="lazy"
-        onerror="this.style.display='none';this.nextElementSibling.style.display='block'"
-      />
-      <div class="gh-fallback">
-        📊 GitHub stats unavailable — <a href="https://github.com/rohitpatel-codes" target="_blank">view on GitHub →</a>
-      </div>
+      <img src="https://github-readme-stats.vercel.app/api?username=rohitpatel-codes&show_icons=true&theme=transparent&hide_border=true&include_all_commits=true&count_private=true&title_color=22d3ee&icon_color=fbbf24&text_color=94a3b8&bg_color=0c1524" alt="GitHub Stats" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+      <div class="gh-fb">📊 <a href="https://github.com/rohitpatel-codes" target="_blank">view on GitHub →</a></div>
     </div>
     <div class="gh-card">
-      <img
-        src="https://github-readme-stats.vercel.app/api/top-langs/?username=rohitpatel-codes&layout=compact&theme=transparent&hide_border=true&title_color=00c2cb&text_color=c4d8f0&bg_color=0f1e35&langs_count=8"
-        alt="Top Languages"
-        loading="lazy"
-        onerror="this.style.display='none';this.nextElementSibling.style.display='block'"
-      />
-      <div class="gh-fallback">
-        💻 Language stats unavailable — <a href="https://github.com/rohitpatel-codes" target="_blank">view on GitHub →</a>
-      </div>
+      <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=rohitpatel-codes&layout=compact&theme=transparent&hide_border=true&title_color=22d3ee&text_color=94a3b8&bg_color=0c1524&langs_count=8" alt="Top Languages" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+      <div class="gh-fb">💻 <a href="https://github.com/rohitpatel-codes" target="_blank">view on GitHub →</a></div>
     </div>
   </div>
-
   <div class="gh-streak">
-    <img
-      src="https://streak-stats.demolab.com/?user=rohitpatel-codes&theme=transparent&hide_border=true&ring=00c2cb&fire=f4a832&currStreakLabel=00c2cb&background=0f1e35&stroke=1a3050&sideLabels=c4d8f0&dates=7a9cbf"
-      alt="GitHub Streak"
-      loading="lazy"
-      style="width:100%;display:block;"
-      onerror="this.style.display='none';this.nextElementSibling.style.display='block'"
-    />
-    <div class="gh-fallback" style="display:none;">
-      🔥 Streak stats unavailable — <a href="https://github.com/rohitpatel-codes" target="_blank">view on GitHub →</a>
-    </div>
+    <img src="https://streak-stats.demolab.com/?user=rohitpatel-codes&theme=transparent&hide_border=true&ring=22d3ee&fire=fbbf24&currStreakLabel=22d3ee&background=0c1524&stroke=1c3358&sideLabels=94a3b8&dates=475569" alt="GitHub Streak" loading="lazy" style="width:100%;display:block" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+    <div class="gh-fb" style="display:none">🔥 <a href="https://github.com/rohitpatel-codes" target="_blank">view on GitHub →</a></div>
   </div>
-
-  <!-- GitHub profile link button -->
-  <div style="text-align:center;margin-top:1.5rem;">
-    <a href="https://github.com/rohitpatel-codes" target="_blank" class="btn btn-o" style="font-family:var(--mono);font-size:.75rem;padding:.7rem 1.8rem;border-radius:6px;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;border:1.5px solid var(--border);color:var(--light);transition:all .25s;">
-      <i class="fab fa-github"></i> View Full GitHub Profile
-    </a>
+  <div style="text-align:center;margin-top:1.4rem">
+    <a href="https://github.com/rohitpatel-codes" target="_blank" class="btn btn-ghost"><i class="fab fa-github"></i> View Full GitHub Profile</a>
   </div>
 </div>
 
 <!-- QUOTE -->
-<div class="quote-bar">
-  <div class="quote-text">"The best way to predict the future is to code it."</div>
-  <div class="quote-attr">— Rohit Patel · Full Stack Developer · Dewas, India</div>
+<div class="quote">
+  <div class="quote-t">"The best way to predict the future is to code it."</div>
+  <div class="quote-a">— Rohit Patel · Full Stack Developer · Dewas, India</div>
 </div>
 
 <!-- CONTACT -->
-<div class="sec" id="contact">
-  <div class="sec-hdr">
-    <div class="sec-tag">06.</div>
-    <h2 class="sec-title">Get In Touch</h2>
-    <div class="sec-line"></div>
+<div class="wrap" id="contact">
+  <div class="sec-label">
+    <div class="sec-num">07 /</div>
+    <h2 class="sec-h">Get In Touch</h2>
+    <div class="sec-rule"></div>
   </div>
-  <div class="contact-wrap">
+  <div class="contact-grid">
     <div>
-      <div class="contact-cta">Let's Build <span class="a">Something</span><br>Great Together</div>
-      <div class="contact-sub">I'm open to full-time roles, freelance Shopify projects, and cloud architecture consulting. I reply within 24 hours.</div>
-      <div class="hero-btns" style="opacity:1;animation:none;">
-        <a href="mailto:rps.241298@gmail.com" class="btn btn-p">📬 Send Email</a>
-        <a href="https://www.linkedin.com/in/rohit-patel-4a6a16259/" target="_blank" class="btn btn-o"><i class="fab fa-linkedin"></i> LinkedIn</a>
+      <div class="c-headline">Let's Build <span class="hi">Something</span> Great Together</div>
+      <div class="c-sub">Open to full-time roles, freelance Shopify projects, and cloud architecture consulting. I reply within 24 hours.</div>
+      <div class="btns" style="opacity:1;animation:none">
+        <a href="mailto:rps.241298@gmail.com" class="btn btn-fill">📬 Send Email</a>
+        <a href="https://www.linkedin.com/in/rohit-patel-4a6a16259/" target="_blank" class="btn btn-ghost"><i class="fab fa-linkedin"></i> LinkedIn</a>
       </div>
     </div>
-    <div class="contact-links">
-      <a href="mailto:rps.241298@gmail.com" class="c-link">
-        <i class="fas fa-envelope"></i>
-        <div><span class="c-label">Email</span>rps.241298@gmail.com</div>
-      </a>
-      <a href="tel:+919009093084" class="c-link">
-        <i class="fas fa-phone"></i>
-        <div><span class="c-label">Phone</span>+91 9009093084</div>
-      </a>
-      <a href="https://www.linkedin.com/in/rohit-patel-4a6a16259/" target="_blank" class="c-link">
-        <i class="fab fa-linkedin"></i>
-        <div><span class="c-label">LinkedIn</span>linkedin.com/in/rohit-patel-4a6a16259</div>
-      </a>
-      <a href="https://github.com/rohitpatel-codes" target="_blank" class="c-link">
-        <i class="fab fa-github"></i>
-        <div><span class="c-label">GitHub</span>github.com/rohitpatel-codes</div>
-      </a>
-      <a href="https://profile.rohitpatel.shop" target="_blank" class="c-link">
-        <i class="fas fa-globe"></i>
-        <div><span class="c-label">Portfolio</span>profile.rohitpatel.shop</div>
-      </a>
+    <div class="c-links">
+      <a href="mailto:rps.241298@gmail.com" class="c-link"><i class="fas fa-envelope"></i><div><span class="c-lbl">Email</span>rps.241298@gmail.com</div></a>
+      <a href="tel:+919009093084" class="c-link"><i class="fas fa-phone"></i><div><span class="c-lbl">Phone</span>+91 9009093084</div></a>
+      <a href="https://www.linkedin.com/in/rohit-patel-4a6a16259/" target="_blank" class="c-link"><i class="fab fa-linkedin"></i><div><span class="c-lbl">LinkedIn</span>linkedin.com/in/rohit-patel-4a6a16259</div></a>
+      <a href="https://github.com/rohitpatel-codes" target="_blank" class="c-link"><i class="fab fa-github"></i><div><span class="c-lbl">GitHub</span>github.com/rohitpatel-codes</div></a>
+      <a href="https://profile.rohitpatel.shop" target="_blank" class="c-link"><i class="fas fa-globe"></i><div><span class="c-lbl">Portfolio</span>profile.rohitpatel.shop</div></a>
+      <a href="http://verify.skilljar.com/c/qfuzrnkzy8zp" target="_blank" class="c-link"><i class="fas fa-certificate"></i><div><span class="c-lbl">Certificate</span>Claude Code in Action — Anthropic</div></a>
     </div>
   </div>
 </div>
 
-<footer>
-  Built with ❤️ by <span>Rohit Patel</span> · Dewas, Madhya Pradesh, India · <span>© 2026</span>
-</footer>
+<footer>Built with ❤️ by <b>Rohit Patel</b> · Dewas, Madhya Pradesh, India · <b>© 2026</b></footer>
 
 <script>
-// ── CURSOR ──
 const cur=document.getElementById('cur'),ring=document.getElementById('ring');
 document.addEventListener('mousemove',e=>{
-  cur.style.left=e.clientX+'px'; cur.style.top=e.clientY+'px';
-  setTimeout(()=>{ ring.style.left=e.clientX+'px'; ring.style.top=e.clientY+'px'; },80);
+  cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';
+  setTimeout(()=>{ring.style.left=e.clientX+'px';ring.style.top=e.clientY+'px';},80);
 });
 document.querySelectorAll('a,button').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{ cur.style.transform='translate(-50%,-50%) scale(2)'; ring.style.opacity='.15'; });
-  el.addEventListener('mouseleave',()=>{ cur.style.transform='translate(-50%,-50%) scale(1)'; ring.style.opacity='.45'; });
+  el.addEventListener('mouseenter',()=>{cur.style.transform='translate(-50%,-50%) scale(2.5)';ring.style.opacity='.1';});
+  el.addEventListener('mouseleave',()=>{cur.style.transform='translate(-50%,-50%) scale(1)';ring.style.opacity='.35';});
 });
 
-// ── PARTICLES ──
 const canvas=document.getElementById('pts'),ctx=canvas.getContext('2d');
 let W,H,pts=[];
-function resize(){ W=canvas.width=innerWidth; H=canvas.height=innerHeight; }
-resize(); window.addEventListener('resize',resize);
-for(let i=0;i<55;i++) pts.push({x:Math.random()*9999,y:Math.random()*9999,r:Math.random()*1.4+.3,vx:(Math.random()-.5)*.22,vy:(Math.random()-.5)*.22,a:Math.random()*.35+.08});
+function resize(){W=canvas.width=innerWidth;H=canvas.height=innerHeight;}
+resize();window.addEventListener('resize',resize);
+for(let i=0;i<50;i++)pts.push({x:Math.random()*9999,y:Math.random()*9999,r:Math.random()*1.2+.2,vx:(Math.random()-.5)*.2,vy:(Math.random()-.5)*.2,a:Math.random()*.28+.06});
 function draw(){
   ctx.clearRect(0,0,W,H);
-  pts.forEach(p=>{
-    p.x+=p.vx; p.y+=p.vy;
-    if(p.x<0)p.x=W; if(p.x>W)p.x=0;
-    if(p.y<0)p.y=H; if(p.y>H)p.y=0;
-    ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-    ctx.fillStyle=`rgba(0,194,203,${p.a})`; ctx.fill();
+  pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;
+    if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;
+    ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(34,211,238,${p.a})`;ctx.fill();
   });
   requestAnimationFrame(draw);
 }
 draw();
 
-// ── TYPEWRITER ──
-const phrases=['Building scalable Shopify ecosystems...','Engineering high-performance APIs...','Deploying on AWS & Kubernetes...','Optimizing for 10M+ product records...','Crafting full-stack web solutions...'];
+const phrases=['Building scalable Shopify ecosystems...','Engineering high-performance APIs...','Deploying with AWS Lambda & Kubernetes...','Managing 10M+ product records...','AI-assisted dev: Claude AI & Codex...','BFS-compliant Shopify apps at scale...'];
 let pi=0,ci=0,del=false;
 const tw=document.getElementById('tw');
 function type(){
   const p=phrases[pi];
-  if(!del){ tw.textContent=p.slice(0,++ci); if(ci===p.length){del=true;setTimeout(type,1800);return;} }
-  else{ tw.textContent=p.slice(0,--ci); if(ci===0){del=false;pi=(pi+1)%phrases.length;} }
-  setTimeout(type,del?32:60);
+  if(!del){tw.textContent=p.slice(0,++ci);if(ci===p.length){del=true;setTimeout(type,1900);return;}}
+  else{tw.textContent=p.slice(0,--ci);if(ci===0){del=false;pi=(pi+1)%phrases.length;}}
+  setTimeout(type,del?30:58);
 }
 type();
 
-// ── COUNTER ──
-const counterObs=new IntersectionObserver(entries=>{
+const cObs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
     if(!e.isIntersecting)return;
-    const el=e.target,target=+el.dataset.target,suffix=el.dataset.suffix||'+';
-    let cur=0; const step=target/40;
-    const t=setInterval(()=>{ cur=Math.min(cur+step,target); el.textContent=Math.floor(cur)+suffix; if(cur>=target)clearInterval(t); },35);
-    counterObs.unobserve(el);
+    const el=e.target,t=+el.dataset.target,s=el.dataset.suffix||'+';
+    let c=0;const step=t/40;
+    const tm=setInterval(()=>{c=Math.min(c+step,t);el.textContent=Math.floor(c)+s;if(c>=t)clearInterval(tm);},35);
+    cObs.unobserve(el);
   });
 },{threshold:.5});
-document.querySelectorAll('.stat-num[data-target]').forEach(c=>counterObs.observe(c));
+document.querySelectorAll('.kpi-n[data-target]').forEach(c=>cObs.observe(c));
 
-// ── SKILL BARS ──
-const skillObs=new IntersectionObserver(entries=>{
+const skObs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
     if(!e.isIntersecting)return;
-    e.target.querySelector('.bar').style.width=e.target.dataset.pct+'%';
+    e.target.querySelector('.sk-bar').style.width=e.target.dataset.pct+'%';
     e.target.classList.add('vis');
-    skillObs.unobserve(e.target);
+    skObs.unobserve(e.target);
   });
-},{threshold:.25});
-document.querySelectorAll('.skill-card').forEach(c=>skillObs.observe(c));
+},{threshold:.2});
+document.querySelectorAll('.sk-card').forEach(c=>skObs.observe(c));
 
-// ── SCROLL REVEAL ──
-const revObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{ if(e.isIntersecting)e.target.classList.add('vis'); });
-},{threshold:.12});
-document.querySelectorAll('.t-item,.proj-card').forEach(el=>revObs.observe(el));
+const rObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis');});
+},{threshold:.1});
+document.querySelectorAll('.tl-item,.proj-card').forEach(el=>rObs.observe(el));
 
-// ── ACTIVE NAV ──
 const navAs=document.querySelectorAll('.nav-links a');
 window.addEventListener('scroll',()=>{
   let cur='';
-  document.querySelectorAll('[id]').forEach(s=>{ if(scrollY>=s.offsetTop-220)cur=s.id; });
-  navAs.forEach(a=>{ a.classList.toggle('active',a.getAttribute('href')==='#'+cur); });
-});
+  document.querySelectorAll('[id]').forEach(s=>{if(scrollY>=s.offsetTop-200)cur=s.id;});
+  navAs.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur);});
+},{ passive:true });
 </script>
 </body>
 </html>
